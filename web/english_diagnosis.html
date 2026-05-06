@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanlu English Workspace</title>
+  <style>
+    :root {
+      --bg: #f7f2e7;
+      --panel: rgba(255, 252, 246, 0.94);
+      --ink: #17302a;
+      --muted: #66786f;
+      --line: rgba(23, 48, 42, 0.12);
+      --accent: #2f6d5b;
+      --accent-soft: #e1efe9;
+      --gold: #c3913f;
+      --gold-soft: #f3e5c8;
+      --danger: #8c4d37;
+      --danger-soft: #f6e6df;
+      --shadow: 0 18px 46px rgba(35, 48, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(195, 145, 63, 0.18), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(47, 109, 91, 0.16), transparent 22%),
+        var(--bg);
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .shell-nav {
+      padding: 18px 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 8;
+      backdrop-filter: blur(12px);
+    }
+
+    .shell-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .shell-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .shell-title {
+      margin-top: 6px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+      font-size: 1.45rem;
+    }
+
+    .shell-links, .shell-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .shell-links {
+      justify-content: flex-end;
+    }
+
+    .shell-flow {
+      margin-top: 16px;
+    }
+
+    .shell-link, .shell-step {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    .shell-link.active, .shell-step.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+
+    .shell-step.done {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+      gap: 18px;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .hero-side {
+      padding: 18px;
+      border-radius: var(--radius);
+      background: #fffdf9;
+      border: 1px solid var(--line);
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .chips, .tab-row, .filters, .actions, .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chips {
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: #7a5820;
+      font-size: 0.92rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.85fr);
+      gap: 18px;
+    }
+
+    .section {
+      padding: 22px;
+    }
+
+    .tab {
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+    .task-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 34, 30, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 24;
+    }
+    .task-surface {
+      position: fixed;
+      z-index: 25;
+      inset: 40px auto auto 50%;
+      transform: translateX(-50%);
+      width: min(860px, calc(100% - 24px));
+      max-height: calc(100vh - 80px);
+      overflow: auto;
+      box-shadow: 0 28px 60px rgba(20, 34, 30, 0.18);
+    }
+    .modal-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .dashboard-card {
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      border-radius: var(--radius);
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .dashboard-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      background: #fffdf9;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .full-span {
+      grid-column: 1 / -1;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      width: 100%;
+      background: #eee6d9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #4d927e);
+    }
+
+    .term {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.3;
+      margin: 6px 0 8px;
+      word-break: break-word;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    button, select {
+      font: inherit;
+    }
+
+    .primary, .secondary, .danger {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .secondary {
+      background: #f6f1e8;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .danger {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .choice-row button {
+      flex: 1 1 160px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .choice-familiar {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .choice-fuzzy {
+      background: var(--gold-soft);
+      color: #7a5820;
+    }
+
+    .choice-unknown {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .summary-box {
+      padding: 14px;
+      border-radius: 18px;
+      background: #fffdf9;
+      border: 1px solid var(--line);
+    }
+
+    .summary-value {
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lexicon-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+    }
+
+    .lexicon-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .lexicon-term {
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .status-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .status-familiar {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .status-fuzzy {
+      background: var(--gold-soft);
+      color: #7a5820;
+    }
+
+    .status-unknown {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .meta-grid {
+      display: grid;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bar-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .bar-track {
+      height: 10px;
+      background: #eee6d9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-track span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), #d6b06a);
+    }
+
+    @media (max-width: 980px) {
+      .hero, .layout {
+        grid-template-columns: 1fr;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel shell-nav">
+      <div class="shell-top">
+        <div>
+          <div class="shell-kicker">Sanlu English System</div>
+          <div class="shell-title">统一学习工作台</div>
+        </div>
+        <nav class="shell-links">
+          <a class="shell-link active" href="/">01 诊断</a>
+          <a class="shell-link" href="/learning">02 背词</a>
+          <a class="shell-link" href="/story">03 短文</a>
+          <a class="shell-link" href="/writing">04 写作</a>
+        </nav>
+      </div>
+      <div class="shell-flow">
+        <div class="shell-step active">诊断建档</div>
+        <div class="shell-step">每日背词</div>
+        <div class="shell-step">短文输入</div>
+        <div class="shell-step">输出巩固</div>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div>
+        <h1>英语总控台</h1>
+        <p class="muted">
+          现在首页不只是诊断入口了。你可以先看今天该从哪里开始，再进入背词、短文和写作；诊断模块则继续负责更新你的长期词汇画像。
+        </p>
+        <div class="chips">
+          <div class="chip" id="profile-focus">Focus: loading...</div>
+          <div class="chip" id="profile-mix">Mix: loading...</div>
+          <div class="chip" id="workspace-priority">Today: loading...</div>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div style="font-weight: 700;">今日起点</div>
+        <p class="muted">
+          如果你今天还没生成学习包，就先去背词页；如果今天的词包已经在跑，下一步通常就是今日短文；写作页适合放在周中或周末做输出巩固。
+        </p>
+        <p class="muted" id="bank-size-note">题库样例加载中...</p>
+        <div class="actions">
+          <a class="secondary" href="/learning" style="display:inline-flex; align-items:center; text-decoration:none;">去背词学习页</a>
+          <a class="secondary" href="/story" style="display:inline-flex; align-items:center; text-decoration:none;">去今日短文页</a>
+          <a class="secondary" href="/writing" style="display:inline-flex; align-items:center; text-decoration:none;">去每周写作页</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section">
+      <div class="stack">
+        <div>
+          <h2 style="margin: 0 0 8px;">今日工作台</h2>
+          <p class="muted">先看当前状态，再决定今天从诊断、背词、短文还是写作开始。</p>
+        </div>
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="dashboard-kicker">01 诊断</div>
+            <div style="font-weight: 700;">词汇画像与补测</div>
+            <div class="muted" id="dashboard-diagnosis-status">加载中...</div>
+            <a class="secondary" href="/" style="display:inline-flex; align-items:center; text-decoration:none; width:max-content;">留在诊断页</a>
+          </div>
+          <div class="dashboard-card">
+            <div class="dashboard-kicker">02 背词</div>
+            <div style="font-weight: 700;">今日背词与复习</div>
+            <div class="muted" id="dashboard-learning-status">加载中...</div>
+            <a class="secondary" href="/learning" style="display:inline-flex; align-items:center; text-decoration:none; width:max-content;">打开背词页</a>
+          </div>
+          <div class="dashboard-card">
+            <div class="dashboard-kicker">03 短文</div>
+            <div style="font-weight: 700;">今日短文输入</div>
+            <div class="muted" id="dashboard-story-status">加载中...</div>
+            <a class="secondary" href="/story" style="display:inline-flex; align-items:center; text-decoration:none; width:max-content;">打开短文页</a>
+          </div>
+          <div class="dashboard-card">
+            <div class="dashboard-kicker">04 写作</div>
+            <div style="font-weight: 700;">每周输出巩固</div>
+            <div class="muted" id="dashboard-writing-status">加载中...</div>
+            <a class="secondary" href="/writing" style="display:inline-flex; align-items:center; text-decoration:none; width:max-content;">打开写作页</a>
+          </div>
+        </div>
+          <div class="card">
+            <h3 style="margin: 0 0 8px;">手动导入到“不认识”词库</h3>
+            <p class="muted">
+            这里支持单个输入，也支持大批量粘贴。多个词请用英文逗号、中文逗号、分号或换行隔开；导入后会直接进入背词库的 `unknown` 栏目，系统会自动判断类型、类别并补出例句。
+            </p>
+            <div class="form-grid" style="margin-top: 16px;">
+              <div class="field full-span">
+                <label for="dashboard-manual-input">单词 / 短语 / 用法</label>
+                <textarea id="dashboard-manual-input" placeholder="例如：benchmark, methodology, in light of, multimodal reasoning"></textarea>
+              </div>
+            </div>
+            <div class="actions" style="margin-top: 14px;">
+              <button class="primary" id="dashboard-import-manual">导入到不认识词库</button>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <div class="tab-row">
+        <button class="tab active" data-tab="test">诊断测试</button>
+        <button class="tab" data-tab="lexicon">词汇书</button>
+        <button class="tab" data-tab="stats">统计页</button>
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="panel section" id="tab-test">
+        <div class="stack">
+          <div class="card" id="test-intro">
+            <h2 style="margin: 0 0 10px;">开始一轮诊断</h2>
+            <p class="muted">
+              每条测试项分成三档：`熟悉`、`模糊`、`不认识`。你的选择会立即保存，并自动更新个人词汇书和统计结果。
+            </p>
+            <div class="actions" style="margin-top: 16px; align-items: center;">
+              <label class="muted" for="session-size">本轮题量</label>
+              <select id="session-size" class="secondary">
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100" selected>100</option>
+              </select>
+              <select id="session-mode" class="secondary">
+                <option value="diagnostic">混合诊断</option>
+                <option value="targeted">分类补测</option>
+              </select>
+              <select id="focus-category" class="secondary hidden">
+                <option value="daily">daily</option>
+                <option value="academic">academic</option>
+                <option value="domain">domain</option>
+                <option value="usage">usage</option>
+              </select>
+              <button class="primary" id="start-session">开始测试</button>
+            </div>
+          </div>
+
+          <div class="card hidden" id="test-panel">
+            <div class="stack">
+              <div class="modal-topbar">
+                <div>
+                  <div style="font-weight:700;">沉浸诊断任务框</div>
+                  <div class="muted">你可以在这里连续完成整轮测试，结束后再关闭这个任务框。</div>
+                </div>
+                <button class="secondary" id="close-test-task">关闭任务框</button>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; gap: 12px; align-items: center;">
+                  <div class="muted" id="progress-label">0 / 0</div>
+                  <div class="muted" id="session-id-label">session</div>
+                </div>
+                <div class="progress-bar" style="margin-top: 10px;">
+                  <span id="progress-fill"></span>
+                </div>
+              </div>
+
+              <div>
+                <div class="badge-row" id="item-badges"></div>
+                <div class="term serif" id="item-text">Loading...</div>
+                <p class="muted" id="item-example" style="margin-top: 10px;"></p>
+              </div>
+
+              <div class="actions">
+                <button class="secondary" id="toggle-gloss">显示释义</button>
+                <button class="secondary" id="toggle-example">隐藏例句</button>
+                <button class="secondary" id="prev-item">上一题</button>
+              </div>
+
+              <div class="card hidden" id="gloss-panel" style="padding: 14px;">
+                <div style="font-weight: 700; margin-bottom: 6px;">释义</div>
+                <div class="muted" id="item-gloss"></div>
+              </div>
+
+              <div class="choice-row">
+                <button class="choice-familiar" data-choice="familiar">熟悉</button>
+                <button class="choice-fuzzy" data-choice="fuzzy">模糊</button>
+                <button class="choice-unknown" data-choice="unknown">不认识</button>
+              </div>
+
+              <div class="muted" id="answer-feedback"></div>
+            </div>
+          </div>
+
+          <div class="card hidden" id="finish-panel">
+            <h2 style="margin: 0 0 10px;">本轮完成</h2>
+            <p class="muted" id="finish-summary"></p>
+            <div class="actions" style="margin-top: 16px;">
+              <button class="primary" id="finish-session">完成并刷新统计</button>
+              <button class="secondary" id="start-another">再来一轮</button>
+              <button class="secondary" id="close-finish-task">关闭任务框</button>
+            </div>
+          </div>
+          <div class="task-overlay hidden" id="test-overlay"></div>
+        </div>
+      </section>
+
+      <section class="panel section hidden" id="tab-lexicon">
+        <div class="stack">
+          <div>
+            <h2 style="margin: 0 0 8px;">个人词汇书</h2>
+            <p class="muted">这里会聚合你测过的词、短语和用法句，后面第二阶段会直接用它来生成学习计划。</p>
+          </div>
+          <div class="filters">
+            <select id="filter-status" class="secondary">
+              <option value="all">全部状态</option>
+              <option value="unknown">不认识</option>
+              <option value="fuzzy">模糊</option>
+              <option value="familiar">熟悉</option>
+            </select>
+            <select id="filter-category" class="secondary">
+              <option value="all">全部类别</option>
+              <option value="daily">daily</option>
+              <option value="academic">academic</option>
+              <option value="domain">domain</option>
+            </select>
+            <select id="filter-type" class="secondary">
+              <option value="all">全部类型</option>
+              <option value="word">word</option>
+              <option value="phrase">phrase</option>
+              <option value="usage">usage</option>
+            </select>
+            <button class="secondary" id="refresh-lexicon">刷新</button>
+          </div>
+          <div class="list" id="lexicon-list"></div>
+        </div>
+      </section>
+
+      <aside class="panel section hidden" id="tab-stats">
+        <div class="stack">
+          <div>
+            <h2 style="margin: 0 0 8px;">诊断统计</h2>
+            <p class="muted">这一页主要帮助你看到自己现在是在哪些类别、哪种类型上更薄弱。</p>
+          </div>
+          <div class="summary-grid" id="summary-grid"></div>
+          <div class="card">
+            <h3 style="margin: 0 0 10px;">按类别</h3>
+            <div class="bar-row" id="category-bars"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin: 0 0 10px;">按类型</h3>
+            <div class="bar-row" id="type-bars"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin: 0 0 10px;">当前薄弱子类</h3>
+            <div class="list" id="weak-list"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      profile: null,
+      diagnostics: null,
+      lexicon: [],
+      overview: null,
+      writing: null,
+      session: null,
+      items: [],
+      index: 0,
+      answers: new Map(),
+      glossVisible: false,
+      exampleVisible: true,
+      startedAt: 0,
+    };
+
+    function openTestTask() {
+      document.getElementById("test-overlay").classList.remove("hidden");
+      document.getElementById("test-panel").classList.add("task-surface");
+      document.getElementById("finish-panel").classList.add("task-surface");
+    }
+
+    function closeTestTask() {
+      document.getElementById("test-overlay").classList.add("hidden");
+      document.getElementById("test-panel").classList.remove("task-surface");
+      document.getElementById("finish-panel").classList.remove("task-surface");
+      document.getElementById("test-panel").classList.add("hidden");
+      document.getElementById("finish-panel").classList.add("hidden");
+      document.getElementById("test-intro").classList.remove("hidden");
+    }
+
+    const tabButtons = [...document.querySelectorAll(".tab")];
+    const tabPanels = {
+      test: document.getElementById("tab-test"),
+      lexicon: document.getElementById("tab-lexicon"),
+      stats: document.getElementById("tab-stats"),
+    };
+
+    function setTab(name) {
+      for (const button of tabButtons) {
+        button.classList.toggle("active", button.dataset.tab === name);
+      }
+      for (const [key, panel] of Object.entries(tabPanels)) {
+        panel.classList.toggle("hidden", key !== name);
+      }
+      if (name === "lexicon") {
+        loadLexicon();
+      }
+      if (name === "stats") {
+        loadDiagnostics();
+      }
+    }
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        throw new Error(detail || "Request failed");
+      }
+      return response.json();
+    }
+
+    function renderDashboard() {
+      const diagnostics = state.diagnostics?.summary || {};
+      const overview = state.overview;
+      const writing = state.writing;
+
+      const tested = diagnostics.tested || 0;
+      const weak = (diagnostics.unknown || 0) + (diagnostics.fuzzy || 0);
+      document.getElementById("dashboard-diagnosis-status").textContent =
+        tested ? `已测 ${tested} 条，当前待补强 ${weak} 条。` : "还没开始正式诊断，适合先测一轮 20-50 题。";
+
+      const queue = overview?.queue;
+      const newCount = queue?.resolvedNewItems?.length || 0;
+      const reviewCount = queue?.resolvedReviewItems?.length || 0;
+      document.getElementById("dashboard-learning-status").textContent =
+        queue ? `今天新词 ${newCount} 条，复习 ${reviewCount} 条。` : "今天的学习包还没生成，建议先去背词页生成一次。";
+
+      const storyReady = overview?.story?.hasStoryText;
+      const storyCount = overview?.story?.targetCount || 0;
+      document.getElementById("dashboard-story-status").textContent =
+        storyReady ? `今日短文已准备，覆盖 ${storyCount} 个目标词。` : "今日短文还没准备，完成词包后再去生成。";
+
+      const promptCount = writing?.prompts?.length || 0;
+      const submissionCount = writing?.submissions?.length || 0;
+      document.getElementById("dashboard-writing-status").textContent =
+        promptCount ? `本周 ${promptCount} 个题目，已提交 ${submissionCount} 次。` : "本周写作题还没加载出来。";
+
+      let priority = "先做一轮诊断，再进入背词。";
+      if (queue && newCount) priority = "先去背词页跑今日学习包。";
+      if (storyReady) priority = "今天可以直接进入短文输入或继续写作输出。";
+      document.getElementById("workspace-priority").textContent = `Today: ${priority}`;
+    }
+
+    async function loadProfile() {
+      state.profile = await api("/api/english/profile");
+      document.getElementById("profile-focus").textContent =
+        `Focus: ${state.profile.focus.join(" / ")}`;
+      document.getElementById("profile-mix").textContent =
+        `Mix: academic ${Math.round(state.profile.mix.academic * 100)}% / daily ${Math.round(state.profile.mix.daily * 100)}%`;
+      renderDashboard();
+    }
+
+    async function loadBankInfo() {
+      const [bankSummary, bank] = await Promise.all([
+        api("/api/english/bank-summary"),
+        api("/api/english/lexicon"),
+      ]);
+      const parts = [
+        `当前诊断库 ${bankSummary.total} 条`,
+        `daily ${bankSummary.byCategory.daily || 0}`,
+        `academic ${bankSummary.byCategory.academic || 0}`,
+        `domain ${bankSummary.byCategory.domain || 0}`,
+      ];
+      document.getElementById("bank-size-note").textContent = parts.join(" / ");
+      state.lexicon = bank.items || [];
+    }
+
+    async function loadOverview() {
+      state.overview = await api("/api/english/learning/overview");
+      renderDashboard();
+    }
+
+    async function loadWriting() {
+      state.writing = await api("/api/english/writing/weekly");
+      renderDashboard();
+    }
+
+    async function importManualItemsFromDashboard() {
+      const rawInput = document.getElementById("dashboard-manual-input").value.trim();
+      if (!rawInput) {
+        alert("先输入一个词，或者粘贴一批用逗号隔开的词。");
+        return;
+      }
+
+      const texts = rawInput
+        .split(/[\n,，;；]+/g)
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      if (!texts.length) {
+        alert("没有识别到可导入的词条。");
+        return;
+      }
+
+      const payload = await api("/api/english/manual-items/bulk", {
+        method: "POST",
+        body: JSON.stringify({
+          texts,
+          status: "unknown",
+        }),
+      });
+
+      document.getElementById("dashboard-manual-input").value = "";
+      state.overview = payload.overview || await api("/api/english/learning/overview");
+      await loadLexicon();
+      renderDashboard();
+      alert(`已导入 ${payload.count} 条到“不认识”词库。`);
+    }
+
+    function renderCurrentItem() {
+      const item = state.items[state.index];
+      if (!item) return;
+
+      document.getElementById("progress-label").textContent =
+        `${Math.min(state.index + 1, state.items.length)} / ${state.items.length}`;
+      document.getElementById("session-id-label").textContent = state.session.sessionId;
+      document.getElementById("progress-fill").style.width =
+        `${(state.answers.size / state.items.length) * 100}%`;
+
+      const badgeContainer = document.getElementById("item-badges");
+      badgeContainer.innerHTML = "";
+      [item.category, item.type, item.subCategory, item.difficulty].forEach((label) => {
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = label;
+        badgeContainer.appendChild(badge);
+      });
+
+      document.getElementById("item-text").textContent = item.text;
+      const example = document.getElementById("item-example");
+      example.textContent = item.example || "";
+      example.classList.toggle("hidden", !state.exampleVisible);
+      document.getElementById("item-gloss").textContent = item.glossZh || "";
+      document.getElementById("gloss-panel").classList.toggle("hidden", !state.glossVisible);
+
+      const existing = state.answers.get(item.id);
+      document.getElementById("answer-feedback").textContent =
+        existing ? `当前记录：${labelForChoice(existing.choice)}` : "";
+      state.startedAt = performance.now();
+    }
+
+    function labelForChoice(choice) {
+      return {
+        familiar: "熟悉",
+        fuzzy: "模糊",
+        unknown: "不认识",
+      }[choice] || choice;
+    }
+
+    async function startSession() {
+      if (state.session && state.items.length) {
+        openTestTask();
+        document.getElementById("test-intro").classList.add("hidden");
+        if (state.index >= state.items.length - 1 && state.answers.size === state.items.length) {
+          document.getElementById("finish-panel").classList.remove("hidden");
+          document.getElementById("test-panel").classList.add("hidden");
+        } else {
+          document.getElementById("test-panel").classList.remove("hidden");
+          document.getElementById("finish-panel").classList.add("hidden");
+          renderCurrentItem();
+        }
+        return;
+      }
+      const size = Number(document.getElementById("session-size").value || 100);
+      const mode = document.getElementById("session-mode").value;
+      const focusCategory = document.getElementById("focus-category").value;
+      const data = await api("/api/english/session/start", {
+        method: "POST",
+        body: JSON.stringify({ size, mode, focusCategory }),
+      });
+      state.session = {
+        sessionId: data.sessionId,
+        total: data.total,
+        mode: data.mode,
+        focusCategory: data.focusCategory,
+      };
+      state.items = data.items || [];
+      state.index = 0;
+      state.answers = new Map();
+      state.glossVisible = false;
+      state.exampleVisible = true;
+
+      document.getElementById("test-intro").classList.add("hidden");
+      document.getElementById("finish-panel").classList.add("hidden");
+      document.getElementById("test-panel").classList.remove("hidden");
+      openTestTask();
+
+      renderCurrentItem();
+    }
+
+    async function answerCurrent(choice) {
+      const item = state.items[state.index];
+      if (!item) return;
+      const latencyMs = Math.round(performance.now() - state.startedAt);
+      await api("/api/english/answer", {
+        method: "POST",
+        body: JSON.stringify({
+          sessionId: state.session.sessionId,
+          itemId: item.id,
+          choice,
+          latencyMs,
+        }),
+      });
+      state.answers.set(item.id, { choice, latencyMs });
+
+      if (state.index < state.items.length - 1) {
+        state.index += 1;
+        state.glossVisible = false;
+        renderCurrentItem();
+      } else {
+        document.getElementById("test-panel").classList.add("hidden");
+        document.getElementById("finish-panel").classList.remove("hidden");
+        document.getElementById("finish-summary").textContent =
+          `这一轮共完成 ${state.answers.size} 条。点击下方按钮后会刷新词汇书和统计。`;
+      }
+    }
+
+    async function completeSession() {
+      if (!state.session) return;
+      const result = await api("/api/english/session/finish", {
+        method: "POST",
+        body: JSON.stringify({ sessionId: state.session.sessionId }),
+      });
+      document.getElementById("finish-summary").textContent =
+        `已保存。熟悉 ${result.stats.familiar} 条，模糊 ${result.stats.fuzzy} 条，不认识 ${result.stats.unknown} 条。`;
+      await Promise.all([loadLexicon(), loadDiagnostics(), loadBankInfo()]);
+      state.session = null;
+      state.items = [];
+      state.answers = new Map();
+    }
+
+    async function loadLexicon() {
+      const data = await api("/api/english/lexicon");
+      state.lexicon = data.items || [];
+      renderLexicon();
+    }
+
+    function renderLexicon() {
+      const statusFilter = document.getElementById("filter-status").value;
+      const categoryFilter = document.getElementById("filter-category").value;
+      const typeFilter = document.getElementById("filter-type").value;
+      const list = document.getElementById("lexicon-list");
+      list.innerHTML = "";
+
+      const items = state.lexicon.filter((item) => {
+        return (statusFilter === "all" || item.status === statusFilter)
+          && (categoryFilter === "all" || item.category === categoryFilter)
+          && (typeFilter === "all" || item.type === typeFilter);
+      });
+
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "card muted";
+        empty.textContent = "当前没有符合筛选条件的词条。先做一轮测试会更有内容。";
+        list.appendChild(empty);
+        return;
+      }
+
+      for (const item of items) {
+        const card = document.createElement("div");
+        card.className = "lexicon-item";
+        card.innerHTML = `
+          <div class="lexicon-top">
+            <div>
+              <div class="lexicon-term">${item.text}</div>
+              <div class="muted">${item.type} / ${item.category} / ${item.subCategory}</div>
+            </div>
+            <div class="status-pill status-${item.status}">${labelForChoice(item.status)}</div>
+          </div>
+          <div class="meta-grid">
+            <div>例句：${item.example || ""}</div>
+            <div>错误次数：${item.wrongCount} / 优先级：${item.priority}</div>
+            <div>最近测试：${item.lastTestedAt || "-"}</div>
+          </div>
+        `;
+        list.appendChild(card);
+      }
+    }
+
+    async function loadDiagnostics() {
+      state.diagnostics = await api("/api/english/diagnostics");
+      renderDiagnostics();
+      renderDashboard();
+    }
+
+    function percentage(part, whole) {
+      if (!whole) return 0;
+      return Math.round((part / whole) * 100);
+    }
+
+    function renderDiagnostics() {
+      const data = state.diagnostics;
+      const summaryGrid = document.getElementById("summary-grid");
+      summaryGrid.innerHTML = "";
+
+      const summaryItems = [
+        ["已测", data.summary.tested],
+        ["熟悉", data.summary.familiar],
+        ["模糊", data.summary.fuzzy],
+        ["不认识", data.summary.unknown],
+      ];
+
+      for (const [label, value] of summaryItems) {
+        const box = document.createElement("div");
+        box.className = "summary-box";
+        box.innerHTML = `<div class="muted">${label}</div><div class="summary-value">${value}</div>`;
+        summaryGrid.appendChild(box);
+      }
+
+      renderBarGroup("category-bars", data.byCategory);
+      renderBarGroup("type-bars", data.byType);
+
+      const weakList = document.getElementById("weak-list");
+      weakList.innerHTML = "";
+      const weakItems = data.weakSubCategories || [];
+      if (!weakItems.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "还没有薄弱项统计。先做测试。";
+        weakList.appendChild(empty);
+      } else {
+        weakItems.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "lexicon-item";
+          card.innerHTML = `
+            <div class="lexicon-top">
+              <div class="lexicon-term">${item.subCategory}</div>
+              <div class="status-pill status-fuzzy">score ${item.score}</div>
+            </div>
+            <div class="muted">分数越高，说明这一类里“模糊/不认识”累计越多。</div>
+          `;
+          weakList.appendChild(card);
+        });
+      }
+    }
+
+    function renderBarGroup(targetId, groups) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+      Object.entries(groups).forEach(([name, counts]) => {
+        const item = document.createElement("div");
+        item.className = "bar-item";
+        item.innerHTML = `
+          <div style="display:flex; justify-content:space-between; gap:12px;">
+            <div>${name}</div>
+            <div class="muted">${counts.tested} tested / ${percentage(counts.familiar, counts.tested)}% familiar</div>
+          </div>
+          <div class="bar-track"><span style="width:${percentage(counts.familiar, counts.tested)}%"></span></div>
+        `;
+        target.appendChild(item);
+      });
+    }
+
+    document.getElementById("start-session").addEventListener("click", startSession);
+    document.getElementById("session-mode").addEventListener("change", (event) => {
+      document.getElementById("focus-category").classList.toggle(
+        "hidden",
+        event.target.value !== "targeted",
+      );
+    });
+    document.getElementById("toggle-gloss").addEventListener("click", () => {
+      state.glossVisible = !state.glossVisible;
+      renderCurrentItem();
+    });
+    document.getElementById("toggle-example").addEventListener("click", () => {
+      state.exampleVisible = !state.exampleVisible;
+      document.getElementById("toggle-example").textContent = state.exampleVisible ? "隐藏例句" : "显示例句";
+      renderCurrentItem();
+    });
+    document.getElementById("prev-item").addEventListener("click", () => {
+      if (!state.items.length || state.index === 0) return;
+      state.index -= 1;
+      renderCurrentItem();
+    });
+    document.querySelectorAll("[data-choice]").forEach((button) => {
+      button.addEventListener("click", () => answerCurrent(button.dataset.choice));
+    });
+    document.getElementById("finish-session").addEventListener("click", completeSession);
+    document.getElementById("start-another").addEventListener("click", () => {
+      document.getElementById("finish-panel").classList.add("hidden");
+      document.getElementById("test-intro").classList.remove("hidden");
+      state.session = null;
+      state.items = [];
+      state.answers = new Map();
+    });
+    document.getElementById("close-test-task").addEventListener("click", closeTestTask);
+    document.getElementById("close-finish-task").addEventListener("click", closeTestTask);
+    document.getElementById("test-overlay").addEventListener("click", closeTestTask);
+    document.getElementById("refresh-lexicon").addEventListener("click", loadLexicon);
+    document.getElementById("dashboard-import-manual").addEventListener("click", importManualItemsFromDashboard);
+    document.getElementById("filter-status").addEventListener("change", renderLexicon);
+    document.getElementById("filter-category").addEventListener("change", renderLexicon);
+    document.getElementById("filter-type").addEventListener("change", renderLexicon);
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => setTab(button.dataset.tab));
+    });
+
+    Promise.all([loadProfile(), loadLexicon(), loadDiagnostics(), loadBankInfo(), loadOverview(), loadWriting()]).catch((error) => {
+      console.error(error);
+      alert("页面初始化失败，请检查本地服务是否已启动。");
+    });
+  </script>
+</body>
+</html>

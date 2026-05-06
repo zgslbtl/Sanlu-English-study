@@ -1,0 +1,12 @@
+{
+  "name": "sanlu-english-learning",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/english_diagnosis_server.mjs",
+    "build-bank": "node scripts/build_english_test_bank.mjs"
+  },
+  "dependencies": {
+    "pdf-parse": "^2.4.5"
+  }
+}

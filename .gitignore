@@ -1,0 +1,17 @@
+.DS_Store
+node_modules/
+*.log
+
+# Runtime outputs
+outputs/
+
+# Personal / frequently changing study state
+data/english/daily/
+data/english/vocab/app_word_inbox.md
+data/english/vocab/master_vocab.md
+data/english/vocab/review_queue.md
+data/english/corpus/corpus_cycle_state.json
+data/english_system/learner/
+
+# Large local source files
+data/english/corpus/papers/pdf/

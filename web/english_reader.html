@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanlu English Reader</title>
+  <style>
+    :root {
+      --bg: #f7f2e7;
+      --panel: rgba(255, 252, 246, 0.95);
+      --ink: #17302a;
+      --muted: #66786f;
+      --line: rgba(23, 48, 42, 0.12);
+      --accent: #2f6d5b;
+      --accent-soft: #e1efe9;
+      --gold-soft: #f3e5c8;
+      --shadow: 0 18px 46px rgba(35, 48, 42, 0.08);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(195, 145, 63, 0.18), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(47, 109, 91, 0.16), transparent 22%),
+        var(--bg);
+    }
+    .app { width: min(1260px, calc(100% - 24px)); margin: 24px auto 48px; display: grid; gap: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+    .shell-nav {
+      padding: 18px 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 8;
+      backdrop-filter: blur(12px);
+    }
+    .shell-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+    }
+    .shell-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .shell-title {
+      margin-top: 6px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+      font-size: 1.45rem;
+    }
+    .shell-links, .shell-flow { display: flex; flex-wrap: wrap; gap: 10px; }
+    .shell-links { justify-content: flex-end; }
+    .shell-flow { margin-top: 16px; }
+    .shell-link, .shell-step {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .shell-link.active, .shell-step.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+    .shell-step.done {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .hero, .section { padding: 24px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr); gap: 18px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.88fr); gap: 18px; }
+    .stack, .list { display: grid; gap: 14px; }
+    .card { border: 1px solid var(--line); background: #fffdf9; border-radius: var(--radius); padding: 18px; }
+    h1, h2, h3 { font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif; margin: 0; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1; margin-bottom: 12px; }
+    p { margin: 0; line-height: 1.7; }
+    .muted { color: var(--muted); }
+    .actions, .chips, .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: var(--gold-soft); color: #7a5820; font-size: 0.92rem; }
+    button, textarea, input, select { font: inherit; }
+    button { border: none; border-radius: 16px; padding: 12px 16px; cursor: pointer; }
+    .primary { background: var(--accent); color: white; }
+    .secondary { background: #f6f1e8; color: var(--ink); border: 1px solid var(--line); }
+    .field, textarea {
+      width: 100%; border-radius: 16px; border: 1px solid var(--line); padding: 12px 14px; background: #fffdf9; color: var(--ink);
+    }
+    textarea { min-height: 180px; resize: vertical; line-height: 1.7; }
+    .reader-surface {
+      min-height: 480px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      padding: 20px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      position: relative;
+      user-select: text;
+    }
+    .paragraph { margin-bottom: 14px; }
+    .selection-hint {
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 10px 12px;
+      background: rgba(241, 234, 219, 0.45);
+    }
+    .item-row {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffdf9;
+      padding: 14px;
+    }
+    .lookup-box {
+      position: sticky;
+      top: 20px;
+    }
+    .selection {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 980px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+      .lookup-box { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel shell-nav">
+      <div class="shell-top">
+        <div>
+          <div class="shell-kicker">Sanlu English System</div>
+          <div class="shell-title">统一学习工作台</div>
+        </div>
+        <nav class="shell-links">
+          <a class="shell-link" href="/">01 诊断</a>
+          <a class="shell-link" href="/learning">02 背词</a>
+          <a class="shell-link" href="/story">03 短文</a>
+          <a class="shell-link active" href="/reader">04 阅读</a>
+          <a class="shell-link" href="/writing">05 写作</a>
+        </nav>
+      </div>
+      <div class="shell-flow">
+        <div class="shell-step done">诊断建档</div>
+        <div class="shell-step done">每日背词</div>
+        <div class="shell-step done">短文输入</div>
+        <div class="shell-step active">语料扩充</div>
+        <div class="shell-step">输出巩固</div>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div>
+        <h1>语料阅读页</h1>
+        <p class="muted">
+          这里是你的输入入口。你可以上传或粘贴文章内容，把它整理成可读页面，再用鼠标划词查询、收录进词汇库，并把它们推进后续学习计划。
+        </p>
+        <div class="chips">
+          <div class="chip">支持: txt / md 直接读取</div>
+          <div class="chip">pdf: 已支持自动抽正文</div>
+          <div class="chip">docx: 已支持自动抽正文</div>
+          <div class="chip" id="materials-count">已入库语料加载中...</div>
+        </div>
+      </div>
+      <aside class="card">
+        <div style="font-weight:700; margin-bottom:8px;">和其他页面的关系</div>
+        <p class="muted">
+          阅读页负责“输入语料”和“划词收词”。你在这里收录的新词，会回到背词学习页；最近的语料也会被今日短文页优先引用。
+        </p>
+        <div class="links" style="margin-top:12px;">
+          <a href="/">诊断页</a>
+          <a href="/learning">背词页</a>
+          <a href="/story">今日短文</a>
+          <a href="/writing">每周写作</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="layout">
+      <section class="panel section">
+        <div class="stack">
+          <div class="card">
+            <h2 style="margin-bottom:10px;">导入语料</h2>
+            <div class="stack">
+              <input class="field" id="material-title" placeholder="语料标题，例如 MuseBench Introduction" />
+              <div class="actions">
+                <select class="field" id="material-source" style="max-width:180px;">
+                  <option value="txt">txt / md</option>
+                  <option value="pdf">pdf</option>
+                  <option value="docx">docx</option>
+                  <option value="manual">manual paste</option>
+                </select>
+                <select class="field" id="material-category" style="max-width:180px;">
+                  <option value="academic">academic</option>
+                  <option value="domain">domain</option>
+                  <option value="daily">daily</option>
+                </select>
+                <input class="field" id="material-file-name" placeholder="文件名或原始路径（可选）" />
+              </div>
+              <input type="file" id="material-file" class="field" />
+              <textarea id="material-content" placeholder="把文章正文粘贴到这里。txt / md 会自动读入；pdf 和 docx 现在都可以直接上传并自动抽正文。"></textarea>
+              <div class="actions">
+                <button class="primary" id="save-material">保存并解析语料</button>
+                <button class="secondary" id="refresh-materials">刷新列表</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 style="margin-bottom:10px;">阅读页面</h2>
+            <p class="muted" style="margin-bottom: 10px;">选中文本后，右侧会尝试给出词汇库匹配，并允许你把它收录进学习系统。</p>
+            <div class="selection-hint muted" style="margin-bottom:10px;">
+              现在支持三种方式：`拖选短语`、`双击单词`、`从推荐候选里一键收录`。
+            </div>
+            <div class="reader-surface" id="reader-surface">先保存一篇语料，然后从右侧语料列表中点“打开”。</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel section">
+        <div class="stack lookup-box">
+          <div class="card">
+            <h3 style="margin-bottom:10px;">材料卡片</h3>
+            <div class="list" id="material-insights"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px;">划词查询</h3>
+            <div class="selection" id="selected-text">还没有选中文本</div>
+            <p class="muted" style="margin-top:8px;" id="selected-context">选中阅读区里的单词或短语后，这里会显示匹配结果。</p>
+            <div class="actions" style="margin-top:12px;">
+              <button class="primary" id="collect-selection">收录进词汇库</button>
+            </div>
+            <div class="muted" id="selection-status" style="margin-top:10px;">先打开一篇材料，然后拖选或双击一个单词。</div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px;">匹配结果</h3>
+            <div class="list" id="lookup-results"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px;">语料列表</h3>
+            <div class="list" id="materials-list"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      materials: [],
+      activeMaterial: null,
+      selectedText: "",
+      selectedContext: "",
+      uploadedFile: null,
+    };
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        throw new Error(detail || "Request failed");
+      }
+      return response.json();
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderMaterials() {
+      document.getElementById("materials-count").textContent = `已入库语料 ${state.materials.length} 篇`;
+      const target = document.getElementById("materials-list");
+      target.innerHTML = "";
+      state.materials.forEach((material) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `
+          <div style="font-weight:700;">${material.title}</div>
+          <div class="muted">${material.category} / ${material.sourceType} / ${material.metadata?.wordCount || 0} words / 候选 ${material.analysis?.recommendedCandidates?.length || 0}</div>
+          <div class="muted" style="margin-top:6px;">${material.analysis?.summary || "还没有自动摘要。"}</div>
+          <div class="actions" style="margin-top: 10px;">
+            <button class="secondary" data-open-material="${material.materialId}">打开</button>
+          </div>
+        `;
+        target.appendChild(row);
+      });
+      if (!target.childElementCount) {
+        target.innerHTML = `<div class="muted">还没有保存语料。</div>`;
+      }
+    }
+
+    function updateSelectionStatus(message) {
+      document.getElementById("selection-status").textContent = message;
+    }
+
+    async function setSelectedText(text, context) {
+      const cleanText = String(text || "").trim();
+      state.selectedText = cleanText;
+      state.selectedContext = String(context || "").trim();
+      document.getElementById("selected-text").textContent = cleanText || "还没有选中文本";
+      document.getElementById("selected-context").textContent = state.selectedContext || "选中阅读区里的单词或短语后，这里会显示匹配结果。";
+      if (!cleanText) {
+        renderLookupResults();
+        updateSelectionStatus("还没有识别到选中的词或短语。可以重新拖选，或者双击一个单词。");
+        return;
+      }
+      updateSelectionStatus(`已捕捉到：${cleanText}。现在可以直接点“收录进词汇库”。`);
+      const payload = await api(`/api/english/lookup?text=${encodeURIComponent(cleanText)}`);
+      renderLookupResults(payload);
+    }
+
+    function renderReaderSurface(material) {
+      state.activeMaterial = material || null;
+      const surface = document.getElementById("reader-surface");
+      if (!material) {
+        surface.textContent = "先保存一篇语料，然后从右侧语料列表中点“打开”。";
+        document.getElementById("material-insights").innerHTML = `<div class="muted">打开一篇材料后，这里会显示自动提取的标题、摘要和推荐收词候选。</div>`;
+        updateSelectionStatus("先打开一篇材料，然后拖选或双击一个单词。");
+        return;
+      }
+      surface.innerHTML = (material.sections || []).map((section) =>
+        `<div class="paragraph" data-section-id="${section.sectionId}">${escapeHtml(section.text)}</div>`
+      ).join("");
+      state.selectedText = "";
+      state.selectedContext = "";
+      document.getElementById("selected-text").textContent = "还没有选中文本";
+      document.getElementById("selected-context").textContent = "选中阅读区里的单词或短语后，这里会显示匹配结果。";
+      updateSelectionStatus("材料已打开。现在可以拖选短语，或双击一个单词来收录。");
+      renderMaterialInsights(material);
+    }
+
+    function renderMaterialInsights(material) {
+      const target = document.getElementById("material-insights");
+      target.innerHTML = "";
+      if (!material) {
+        target.innerHTML = `<div class="muted">打开一篇材料后，这里会显示自动提取的标题、摘要和推荐收词候选。</div>`;
+        return;
+      }
+
+      const summaryCard = document.createElement("div");
+      summaryCard.className = "item-row";
+      summaryCard.innerHTML = `
+        <div style="font-weight:700;">${material.analysis?.extractedTitle || material.title}</div>
+        <div class="muted" style="margin-top:8px;">摘要：${material.analysis?.summary || "暂时没有自动摘要。"}</div>
+      `;
+      target.appendChild(summaryCard);
+
+      const candidates = material.analysis?.recommendedCandidates || [];
+      if (!candidates.length) {
+        const empty = document.createElement("div");
+        empty.className = "item-row";
+        empty.innerHTML = `<div class="muted">这篇材料暂时没有推荐候选，你也可以直接划词收录。</div>`;
+        target.appendChild(empty);
+        return;
+      }
+
+      candidates.forEach((candidate, index) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `
+          <div style="font-weight:700;">${index + 1}. ${candidate.text}</div>
+          <div class="muted">${candidate.type} / ${candidate.category} / ${candidate.subCategory || "candidate"}</div>
+          <div class="muted" style="margin-top:6px;">${candidate.glossZh || candidate.reason || "候选释义待确认"}</div>
+          <div class="muted" style="margin-top:6px;">${candidate.context || ""}</div>
+          <div class="actions" style="margin-top:10px;">
+            <button class="secondary" data-candidate-text="${escapeHtml(candidate.text)}" data-candidate-context="${escapeHtml(candidate.context || "")}">收录这个候选</button>
+          </div>
+        `;
+        target.appendChild(row);
+      });
+    }
+
+    function renderLookupResults(payload = null) {
+      const target = document.getElementById("lookup-results");
+      target.innerHTML = "";
+      const learningMatches = payload?.learningMatches || [];
+      const matches = payload?.matches || [];
+      const combined = [...learningMatches, ...matches];
+      combined.forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `
+          <div style="font-weight:700;">${item.text}</div>
+          <div class="muted">${item.type || ""} / ${item.category || ""} / ${item.subCategory || ""}</div>
+          <div class="muted">${item.glossZh || "释义待补充"}</div>
+        `;
+        target.appendChild(row);
+      });
+      if (!target.childElementCount) {
+        target.innerHTML = `<div class="muted">暂时没有精确匹配，可以直接收录进词汇库，之后在背词页里继续加工。</div>`;
+      }
+    }
+
+    async function loadMaterials() {
+      const payload = await api("/api/english/materials");
+      state.materials = payload.materials || [];
+      renderMaterials();
+    }
+
+    async function saveMaterial() {
+      const title = document.getElementById("material-title").value.trim();
+      const sourceType = document.getElementById("material-source").value;
+      const category = document.getElementById("material-category").value;
+      const fileName = document.getElementById("material-file-name").value.trim();
+      const content = document.getElementById("material-content").value.trim();
+      if (sourceType !== "pdf" && sourceType !== "docx" && !content) {
+        alert("需要提供文章正文。");
+        return;
+      }
+      let pdfBase64 = "";
+      let docxBase64 = "";
+      if (sourceType === "pdf") {
+        if (!state.uploadedFile) {
+          alert("先选择一个 PDF 文件。");
+          return;
+        }
+        const bytes = await state.uploadedFile.arrayBuffer();
+        let binary = "";
+        const chunkSize = 0x8000;
+        const uint8 = new Uint8Array(bytes);
+        for (let index = 0; index < uint8.length; index += chunkSize) {
+          binary += String.fromCharCode(...uint8.subarray(index, index + chunkSize));
+        }
+        pdfBase64 = btoa(binary);
+      }
+      if (sourceType === "docx") {
+        if (!state.uploadedFile) {
+          alert("先选择一个 DOCX 文件。");
+          return;
+        }
+        const bytes = await state.uploadedFile.arrayBuffer();
+        let binary = "";
+        const chunkSize = 0x8000;
+        const uint8 = new Uint8Array(bytes);
+        for (let index = 0; index < uint8.length; index += chunkSize) {
+          binary += String.fromCharCode(...uint8.subarray(index, index + chunkSize));
+        }
+        docxBase64 = btoa(binary);
+      }
+      const material = await api("/api/english/materials/save", {
+        method: "POST",
+        body: JSON.stringify({ title, sourceType, category, fileName, content, pdfBase64, docxBase64 }),
+      });
+      await loadMaterials();
+      renderReaderSurface(material);
+      document.getElementById("material-title").value = material.title || "";
+      document.getElementById("material-content").value = material.rawText || "";
+      alert("语料已经保存并解析好了。");
+    }
+
+    async function handleSelection() {
+      const selection = window.getSelection();
+      const text = selection ? selection.toString().trim() : "";
+      const anchorNode = selection?.anchorNode?.parentElement;
+      const context = anchorNode?.textContent?.trim() || "";
+      await setSelectedText(text, context);
+    }
+
+    async function collectSelection() {
+      if (!state.selectedText) {
+        alert("先在阅读区里选中一个单词或短语。");
+        return;
+      }
+      await api("/api/english/reader/collect", {
+        method: "POST",
+        body: JSON.stringify({
+          text: state.selectedText,
+          materialId: state.activeMaterial?.materialId || "",
+          category: state.activeMaterial?.category || "daily",
+          context: state.selectedContext,
+        }),
+      });
+      updateSelectionStatus(`已收录：${state.selectedText}`);
+      alert("已经收录进词汇库，后面会进入你的学习系统。");
+    }
+
+    async function collectCandidate(text, context) {
+      if (!state.activeMaterial) return;
+      await api("/api/english/reader/collect", {
+        method: "POST",
+        body: JSON.stringify({
+          text,
+          materialId: state.activeMaterial.materialId,
+          category: state.activeMaterial.category || "daily",
+          context,
+        }),
+      });
+      updateSelectionStatus(`已从推荐候选收录：${text}`);
+      alert(`已经把 ${text} 收录进词汇库。`);
+    }
+
+    document.getElementById("save-material").addEventListener("click", saveMaterial);
+    document.getElementById("refresh-materials").addEventListener("click", loadMaterials);
+    document.getElementById("collect-selection").addEventListener("click", collectSelection);
+    const readerSurface = document.getElementById("reader-surface");
+    readerSurface.addEventListener("mouseup", () => {
+      setTimeout(() => {
+        handleSelection().catch((error) => {
+          document.getElementById("selected-context").textContent = error.message;
+        });
+      }, 20);
+    });
+    readerSurface.addEventListener("dblclick", () => {
+      setTimeout(() => {
+        handleSelection().catch((error) => {
+          document.getElementById("selected-context").textContent = error.message;
+        });
+      }, 20);
+    });
+    document.addEventListener("selectionchange", () => {
+      const selection = window.getSelection();
+      const text = selection ? selection.toString().trim() : "";
+      if (!text) return;
+      const anchorElement = selection?.anchorNode?.parentElement;
+      if (!anchorElement || !readerSurface.contains(anchorElement)) return;
+      setSelectedText(text, anchorElement.textContent?.trim() || "").catch((error) => {
+        document.getElementById("selected-context").textContent = error.message;
+      });
+    });
+    document.getElementById("materials-list").addEventListener("click", (event) => {
+      const target = event.target.closest("[data-open-material]");
+      if (!target) return;
+      const material = state.materials.find((item) => item.materialId === target.dataset.openMaterial);
+      renderReaderSurface(material);
+    });
+    document.getElementById("material-insights").addEventListener("click", (event) => {
+      const target = event.target.closest("[data-candidate-text]");
+      if (!target) return;
+      collectCandidate(target.dataset.candidateText, target.dataset.candidateContext || "").catch((error) => {
+        alert(error.message);
+      });
+    });
+    document.getElementById("material-file").addEventListener("change", async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      state.uploadedFile = file;
+      document.getElementById("material-file-name").value = file.name;
+      if (/text|json|markdown/.test(file.type) || /\.(txt|md|markdown)$/i.test(file.name)) {
+        const text = await file.text();
+        document.getElementById("material-content").value = text;
+      } else if (/\.pdf$/i.test(file.name)) {
+        document.getElementById("material-source").value = "pdf";
+        document.getElementById("material-content").value = "";
+        document.getElementById("material-content").placeholder = "PDF 已就绪。点击“保存并解析语料”后，系统会自动抽取正文并回填到这里。";
+      } else if (/\.docx$/i.test(file.name)) {
+        document.getElementById("material-source").value = "docx";
+        document.getElementById("material-content").value = "";
+        document.getElementById("material-content").placeholder = "DOCX 已就绪。点击“保存并解析语料”后，系统会自动抽取正文并回填到这里。";
+      }
+    });
+
+    loadMaterials().catch((error) => {
+      document.getElementById("materials-count").textContent = error.message;
+    });
+  </script>
+</body>
+</html>

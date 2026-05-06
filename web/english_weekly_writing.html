@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanlu Weekly Writing</title>
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --panel: rgba(255, 252, 246, 0.96);
+      --ink: #1c3029;
+      --muted: #687a72;
+      --line: rgba(28, 48, 41, 0.12);
+      --accent: #2d6e5d;
+      --accent-soft: #e1efe9;
+      --gold-soft: #f4e5c8;
+      --danger-soft: #f7e6df;
+      --shadow: 0 18px 46px rgba(35, 48, 42, 0.08);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(196, 146, 64, 0.16), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(45, 110, 93, 0.15), transparent 24%),
+        var(--bg);
+    }
+    .app { width: min(1180px, calc(100% - 24px)); margin: 24px auto 48px; display: grid; gap: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+    .shell-nav {
+      padding: 18px 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 8;
+      backdrop-filter: blur(12px);
+    }
+    .shell-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+    }
+    .shell-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .shell-title {
+      margin-top: 6px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+      font-size: 1.45rem;
+    }
+    .shell-links, .shell-flow { display: flex; flex-wrap: wrap; gap: 10px; }
+    .shell-links { justify-content: flex-end; }
+    .shell-flow { margin-top: 16px; }
+    .shell-link, .shell-step {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .shell-link.active, .shell-step.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+    .shell-step.done {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .hero, .section { padding: 24px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.85fr); gap: 18px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr); gap: 18px; }
+    .stack, .list { display: grid; gap: 14px; }
+    .card { border: 1px solid var(--line); background: #fffdf9; border-radius: var(--radius); padding: 18px; }
+    h1, h2, h3 { font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif; margin: 0; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1; margin-bottom: 12px; }
+    p { margin: 0; line-height: 1.7; }
+    .muted { color: var(--muted); }
+    .chips, .actions, .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: var(--gold-soft); color: #7b5921; font-size: 0.92rem; }
+    button, textarea { font: inherit; }
+    button { border: none; border-radius: 16px; padding: 12px 16px; cursor: pointer; }
+    .primary { background: var(--accent); color: white; }
+    .secondary { background: #f6f1e8; color: var(--ink); border: 1px solid var(--line); }
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      padding: 14px;
+      resize: vertical;
+      background: #fffdf9;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .prompt-card.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(45, 110, 93, 0.08) inset; }
+    .item-row { border: 1px solid var(--line); border-radius: 18px; background: #fffdf9; padding: 14px; }
+    .feedback-box { border-left: 4px solid var(--accent); padding-left: 12px; }
+    .task-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 34, 30, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 24;
+    }
+    .immersive-shell {
+      position: fixed;
+      inset: 24px;
+      z-index: 25;
+      overflow: auto;
+      align-content: start;
+    }
+    .modal-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .hidden { display: none !important; }
+    a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 980px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel shell-nav">
+      <div class="shell-top">
+        <div>
+          <div class="shell-kicker">Sanlu English System</div>
+          <div class="shell-title">统一学习工作台</div>
+        </div>
+        <nav class="shell-links">
+          <a class="shell-link" href="/">01 诊断</a>
+          <a class="shell-link" href="/learning">02 背词</a>
+          <a class="shell-link" href="/story">03 短文</a>
+          <a class="shell-link active" href="/writing">04 写作</a>
+        </nav>
+      </div>
+      <div class="shell-flow">
+        <div class="shell-step done">诊断建档</div>
+        <div class="shell-step done">每日背词</div>
+        <div class="shell-step done">短文输入</div>
+        <div class="shell-step active">输出巩固</div>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div>
+        <h1>每周写作批改</h1>
+        <p class="muted">
+          这页负责把输入转成输出。系统每周会给你两个小议题，一个偏日常，一个偏学术；你写完后，它会从长度、结构和重点词使用情况给你反馈。
+        </p>
+        <div class="chips">
+          <div class="chip" id="week-chip">Week</div>
+          <div class="chip" id="prompt-chip">Prompts</div>
+          <div class="chip" id="submission-chip">Submissions</div>
+        </div>
+      </div>
+      <aside class="card">
+        <div style="font-weight:700; margin-bottom:8px;">工作流位置</div>
+        <p class="muted">
+          推荐节奏是：周中至少写一次日常任务，周末写一次学术解释。这样词汇会真正从“认识”变成“能用”。
+        </p>
+        <div class="links" style="margin-top:12px;">
+          <a href="/">诊断页</a>
+          <a href="/learning">背词页</a>
+          <a href="/story">今日短文</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section">
+      <div class="card">
+        <div class="actions">
+          <button class="primary" id="open-writing-task">打开沉浸写作任务</button>
+          <button class="secondary" id="refresh-writing">刷新本周题目</button>
+        </div>
+        <p class="muted" style="margin-top:12px;">
+          点击后会在页面上弹出专门的写作任务框。题目会尽量绑定你最近的背词、短文和研究方向，并给出必用词与具体写作步骤。
+        </p>
+      </div>
+    </section>
+
+    <div class="task-overlay hidden" id="writing-overlay"></div>
+    <section class="layout immersive-shell hidden" id="writing-workspace">
+      <section class="panel section">
+        <div class="stack">
+          <div class="card">
+            <div class="modal-topbar">
+              <div>
+                <div style="font-weight:700;">沉浸写作任务框</div>
+                <div class="muted">先选题，再在同一个任务框里完成写作和看反馈。</div>
+              </div>
+              <button class="secondary" id="close-writing-task">关闭任务框</button>
+            </div>
+          </div>
+          <div class="card">
+            <h2 style="margin-bottom:10px;">本周题目</h2>
+            <div class="list" id="prompts-list"></div>
+          </div>
+          <div class="card">
+            <h2 style="margin-bottom:10px;">写作输入</h2>
+            <textarea id="writing-input" placeholder="在这里写你的英文答案。建议先保证结构清楚，再努力用上 2-4 个本周重点词。"></textarea>
+            <div class="actions" style="margin-top: 14px;">
+              <button class="primary" id="submit-writing">提交并获取反馈</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel section">
+        <div class="stack">
+          <div class="card">
+            <h3 style="margin-bottom:10px;">题目详情</h3>
+            <div class="list" id="selected-prompt"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px;">批改反馈</h3>
+            <div class="list" id="writing-feedback"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom:10px;">历史提交</h3>
+            <div class="list" id="writing-history"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      writing: null,
+      selectedPromptId: "",
+      workspaceOpen: false,
+    };
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        throw new Error(detail || "Request failed");
+      }
+      return response.json();
+    }
+
+    function selectedPrompt() {
+      return state.writing?.prompts?.find((item) => item.promptId === state.selectedPromptId) || state.writing?.prompts?.[0] || null;
+    }
+
+    function openWritingWorkspace() {
+      state.workspaceOpen = true;
+      document.getElementById("writing-overlay").classList.remove("hidden");
+      document.getElementById("writing-workspace").classList.remove("hidden");
+    }
+
+    function closeWritingWorkspace() {
+      state.workspaceOpen = false;
+      document.getElementById("writing-overlay").classList.add("hidden");
+      document.getElementById("writing-workspace").classList.add("hidden");
+    }
+
+    function renderWriting() {
+      document.getElementById("week-chip").textContent = `Week: ${state.writing?.weekKey || "-"}`;
+      document.getElementById("prompt-chip").textContent = `Prompts: ${state.writing?.prompts?.length || 0}`;
+      document.getElementById("submission-chip").textContent = `Submissions: ${state.writing?.submissions?.length || 0}`;
+
+      if (!state.selectedPromptId && state.writing?.prompts?.[0]) {
+        state.selectedPromptId = state.writing.prompts[0].promptId;
+      }
+
+      const promptList = document.getElementById("prompts-list");
+      promptList.innerHTML = "";
+      (state.writing?.prompts || []).forEach((prompt) => {
+        const row = document.createElement("button");
+        row.className = `item-row prompt-card ${prompt.promptId === state.selectedPromptId ? "active" : ""}`;
+        row.dataset.promptId = prompt.promptId;
+        row.innerHTML = `
+          <div style="font-weight:700; text-align:left;">${prompt.title}</div>
+          <div class="muted" style="text-align:left; margin-top:6px;">${prompt.type} / ${prompt.instruction}</div>
+        `;
+        promptList.appendChild(row);
+      });
+
+      const prompt = selectedPrompt();
+      const detail = document.getElementById("selected-prompt");
+      detail.innerHTML = "";
+      if (prompt) {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `
+          <div style="font-weight:700;">${prompt.title}</div>
+          <div class="muted" style="margin-top:8px;">${prompt.scenario || prompt.instruction}</div>
+          <div class="muted" style="margin-top:8px;">必用词 / 用法：${(prompt.mustUseItems || []).join(" / ") || "暂时没有"}</div>
+          <div class="muted" style="margin-top:8px;">建议补充：${(prompt.suggestedItems || []).join(" / ") || "暂时没有"}</div>
+          <div class="muted" style="margin-top:8px;">提示：${prompt.referenceContext || "先保证结构完整。"} </div>
+        `;
+        detail.appendChild(row);
+        const checklist = document.createElement("div");
+        checklist.className = "item-row";
+        checklist.innerHTML = `
+          <div style="font-weight:700;">写作步骤</div>
+          <div class="muted" style="margin-top:8px;">${(prompt.taskChecklist || []).map((item, index) => `${index + 1}. ${item}`).join("<br>") || "先保证结构完整。"}</div>
+        `;
+        detail.appendChild(checklist);
+      }
+
+      const history = document.getElementById("writing-history");
+      history.innerHTML = "";
+      (state.writing?.submissions || []).slice().reverse().forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div style="font-weight:700;">${item.promptId}</div><div class="muted">${item.submittedAt}</div><div class="muted">字数 ${item.analysis?.wordCount || 0} / 使用建议词 ${item.analysis?.usedSuggestedItems?.length || 0}</div>`;
+        history.appendChild(row);
+      });
+      if (!history.childElementCount) history.innerHTML = `<div class="muted">本周还没有提交。</div>`;
+    }
+
+    function renderFeedback(submission = null) {
+      const target = document.getElementById("writing-feedback");
+      target.innerHTML = "";
+      if (!submission) {
+        target.innerHTML = `<div class="muted">提交后，这里会显示结构和词汇使用反馈。</div>`;
+        return;
+      }
+      const summary = document.createElement("div");
+      summary.className = "item-row feedback-box";
+      const usedSuggestedItems = submission.analysis.usedSuggestedItems || [];
+      const usedMustUseItems = submission.analysis.usedMustUseItems || [];
+      summary.innerHTML = `
+        <div style="font-weight:700;">本次分析</div>
+        <div class="muted">字数：${submission.analysis.wordCount} / 句子数：${submission.analysis.sentenceCount}</div>
+        <div class="muted">命中的建议词：${usedSuggestedItems.join(" / ") || "暂时没有"}</div>
+        <div class="muted">命中的必用词：${usedMustUseItems.join(" / ") || "暂时没有"}</div>
+      `;
+      target.appendChild(summary);
+      (submission.analysis.feedback || []).forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div class="muted">${item}</div>`;
+        target.appendChild(row);
+      });
+    }
+
+    async function loadWriting() {
+      state.writing = await api("/api/english/writing/weekly");
+      renderWriting();
+      renderFeedback();
+    }
+
+    async function submitWriting() {
+      const prompt = selectedPrompt();
+      const text = document.getElementById("writing-input").value.trim();
+      if (!prompt) {
+        alert("先选一个题目。");
+        return;
+      }
+      if (!text) {
+        alert("先写下你的答案。");
+        return;
+      }
+      const payload = await api("/api/english/writing/submit", {
+        method: "POST",
+        body: JSON.stringify({ promptId: prompt.promptId, text }),
+      });
+      state.writing = await api("/api/english/writing/weekly");
+      renderWriting();
+      renderFeedback(payload.submission);
+      openWritingWorkspace();
+    }
+
+    document.getElementById("open-writing-task").addEventListener("click", () => {
+      openWritingWorkspace();
+      if (!state.writing) loadWriting();
+    });
+    document.getElementById("refresh-writing").addEventListener("click", async () => {
+      await loadWriting();
+      openWritingWorkspace();
+    });
+    document.getElementById("close-writing-task").addEventListener("click", closeWritingWorkspace);
+    document.getElementById("writing-overlay").addEventListener("click", closeWritingWorkspace);
+    document.getElementById("submit-writing").addEventListener("click", submitWriting);
+    document.getElementById("prompts-list").addEventListener("click", (event) => {
+      const target = event.target.closest("[data-prompt-id]");
+      if (!target) return;
+      state.selectedPromptId = target.dataset.promptId;
+      openWritingWorkspace();
+      renderWriting();
+      renderFeedback();
+    });
+
+    loadWriting().catch((error) => {
+      document.getElementById("selected-prompt").textContent = error.message;
+    });
+  </script>
+</body>
+</html>

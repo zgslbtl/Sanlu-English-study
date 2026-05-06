@@ -1,0 +1,2702 @@
+[
+  {
+    "category": "daily",
+    "id": "D0001",
+    "type": "word",
+    "text": "aisle",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "过道，通道",
+    "example": "She walked slowly down the aisle to find an empty seat.",
+    "tags": [
+      "daily",
+      "space",
+      "high-frequency"
+    ],
+    "audioText": "aisle",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0002",
+    "type": "phrase",
+    "text": "be used to",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "习惯于",
+    "example": "I am used to taking notes while listening.",
+    "tags": [
+      "daily",
+      "phrase",
+      "habit"
+    ],
+    "audioText": "be used to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0003",
+    "type": "word",
+    "text": "commute",
+    "subCategory": "travel",
+    "difficulty": "basic",
+    "glossZh": "通勤；往返",
+    "example": "She spends an hour every day on her commute to campus.",
+    "tags": [
+      "daily",
+      "travel",
+      "routine"
+    ],
+    "audioText": "commute",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0004",
+    "type": "phrase",
+    "text": "run into",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "偶遇；遭遇",
+    "example": "I ran into my classmate near the library yesterday.",
+    "tags": [
+      "daily",
+      "phrase",
+      "conversation"
+    ],
+    "audioText": "run into",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0005",
+    "type": "word",
+    "text": "somewhat",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "有点；某种程度上",
+    "example": "The explanation was somewhat helpful, but I still had questions.",
+    "tags": [
+      "daily",
+      "hedging",
+      "high-frequency"
+    ],
+    "audioText": "somewhat",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0006",
+    "type": "word",
+    "text": "well-off",
+    "subCategory": "society",
+    "difficulty": "intermediate",
+    "glossZh": "富裕的；经济状况不错的",
+    "example": "Not every student comes from a well-off family.",
+    "tags": [
+      "daily",
+      "society",
+      "description"
+    ],
+    "audioText": "well-off",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0007",
+    "type": "phrase",
+    "text": "sort out",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "整理；解决",
+    "example": "I need to sort out my notes before tomorrow's meeting.",
+    "tags": [
+      "daily",
+      "phrase",
+      "task"
+    ],
+    "audioText": "sort out",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0008",
+    "type": "word",
+    "text": "wrapped",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "包着的；裹好的",
+    "example": "The gift was wrapped in simple brown paper.",
+    "tags": [
+      "daily",
+      "description",
+      "imageable"
+    ],
+    "audioText": "wrapped",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0009",
+    "type": "word",
+    "text": "gist",
+    "subCategory": "conversation",
+    "difficulty": "intermediate",
+    "glossZh": "主旨；大意",
+    "example": "I did not catch every detail, but I understood the gist.",
+    "tags": [
+      "daily",
+      "conversation",
+      "summary"
+    ],
+    "audioText": "gist",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0010",
+    "type": "phrase",
+    "text": "by the time",
+    "subCategory": "grammar-in-context",
+    "difficulty": "intermediate",
+    "glossZh": "到...的时候",
+    "example": "By the time I arrived, the seminar had already started.",
+    "tags": [
+      "daily",
+      "phrase",
+      "time"
+    ],
+    "audioText": "by the time",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0011",
+    "type": "word",
+    "text": "laundry",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "洗衣物；洗衣",
+    "example": "I have to do my laundry before the weekend trip.",
+    "tags": [
+      "daily",
+      "routine",
+      "life"
+    ],
+    "audioText": "laundry",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0012",
+    "type": "word",
+    "text": "groceries",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "杂货；食品杂货",
+    "example": "I bought groceries on my way home from the library.",
+    "tags": [
+      "daily",
+      "routine",
+      "life"
+    ],
+    "audioText": "groceries",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0013",
+    "type": "word",
+    "text": "landlord",
+    "subCategory": "housing",
+    "difficulty": "intermediate",
+    "glossZh": "房东",
+    "example": "The landlord said the internet would be fixed tomorrow.",
+    "tags": [
+      "daily",
+      "housing",
+      "daily-life"
+    ],
+    "audioText": "landlord",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0014",
+    "type": "word",
+    "text": "receipt",
+    "subCategory": "shopping",
+    "difficulty": "basic",
+    "glossZh": "收据",
+    "example": "Keep the receipt in case you need to return the book light.",
+    "tags": [
+      "daily",
+      "shopping",
+      "practical"
+    ],
+    "audioText": "receipt",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0015",
+    "type": "word",
+    "text": "crowded",
+    "subCategory": "travel",
+    "difficulty": "basic",
+    "glossZh": "拥挤的",
+    "example": "The subway was too crowded for me to read comfortably.",
+    "tags": [
+      "daily",
+      "travel",
+      "description"
+    ],
+    "audioText": "crowded",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0016",
+    "type": "word",
+    "text": "afford",
+    "subCategory": "society",
+    "difficulty": "basic",
+    "glossZh": "负担得起",
+    "example": "Some students cannot afford expensive housing near campus.",
+    "tags": [
+      "daily",
+      "society",
+      "practical"
+    ],
+    "audioText": "afford",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0017",
+    "type": "word",
+    "text": "exhausted",
+    "subCategory": "health",
+    "difficulty": "basic",
+    "glossZh": "筋疲力尽的",
+    "example": "I felt exhausted after traveling all day.",
+    "tags": [
+      "daily",
+      "health",
+      "emotion"
+    ],
+    "audioText": "exhausted",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0018",
+    "type": "word",
+    "text": "reliable",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "可靠的",
+    "example": "She is the most reliable person in our project group.",
+    "tags": [
+      "daily",
+      "description",
+      "character"
+    ],
+    "audioText": "reliable",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0019",
+    "type": "word",
+    "text": "flexible",
+    "subCategory": "study-routine",
+    "difficulty": "intermediate",
+    "glossZh": "灵活的",
+    "example": "My study plan has to stay flexible this month.",
+    "tags": [
+      "daily",
+      "study",
+      "description"
+    ],
+    "audioText": "flexible",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0020",
+    "type": "word",
+    "text": "navigate",
+    "subCategory": "travel",
+    "difficulty": "intermediate",
+    "glossZh": "导航；应对",
+    "example": "It took me a while to navigate the new campus.",
+    "tags": [
+      "daily",
+      "travel",
+      "action"
+    ],
+    "audioText": "navigate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0021",
+    "type": "word",
+    "text": "appointment",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "预约；约定",
+    "example": "I have a doctor’s appointment on Thursday morning.",
+    "tags": [
+      "daily",
+      "routine",
+      "time"
+    ],
+    "audioText": "appointment",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0022",
+    "type": "word",
+    "text": "neighborhood",
+    "subCategory": "housing",
+    "difficulty": "basic",
+    "glossZh": "街区；社区",
+    "example": "The neighborhood is quiet, so it is easy to study there.",
+    "tags": [
+      "daily",
+      "housing",
+      "place"
+    ],
+    "audioText": "neighborhood",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0023",
+    "type": "word",
+    "text": "schedule",
+    "subCategory": "study-routine",
+    "difficulty": "basic",
+    "glossZh": "日程安排",
+    "example": "My schedule is crowded this week, so I need a shorter study block.",
+    "tags": [
+      "daily",
+      "study",
+      "planning"
+    ],
+    "audioText": "schedule",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0024",
+    "type": "word",
+    "text": "postpone",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "推迟",
+    "example": "We had to postpone the meeting because of the rainstorm.",
+    "tags": [
+      "daily",
+      "time",
+      "action"
+    ],
+    "audioText": "postpone",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0025",
+    "type": "word",
+    "text": "settle",
+    "subCategory": "housing",
+    "difficulty": "intermediate",
+    "glossZh": "安顿；解决",
+    "example": "It took me a few days to settle into the new apartment.",
+    "tags": [
+      "daily",
+      "housing",
+      "adjustment"
+    ],
+    "audioText": "settle",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0026",
+    "type": "phrase",
+    "text": "pick up",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "拿起；接人；学会",
+    "example": "I picked up a few useful phrases from the conversation.",
+    "tags": [
+      "daily",
+      "phrase",
+      "high-frequency"
+    ],
+    "audioText": "pick up",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0027",
+    "type": "phrase",
+    "text": "drop off",
+    "subCategory": "travel",
+    "difficulty": "basic",
+    "glossZh": "放下；下降",
+    "example": "The taxi dropped me off outside the station.",
+    "tags": [
+      "daily",
+      "phrase",
+      "travel"
+    ],
+    "audioText": "drop off",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0028",
+    "type": "phrase",
+    "text": "work out",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "锻炼；解决",
+    "example": "We finally worked out a better reading schedule.",
+    "tags": [
+      "daily",
+      "phrase",
+      "problem-solving"
+    ],
+    "audioText": "work out",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0029",
+    "type": "phrase",
+    "text": "check in",
+    "subCategory": "travel",
+    "difficulty": "basic",
+    "glossZh": "办理入住；签到",
+    "example": "I checked in at the hotel before heading to the conference venue.",
+    "tags": [
+      "daily",
+      "phrase",
+      "travel"
+    ],
+    "audioText": "check in",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0030",
+    "type": "phrase",
+    "text": "fill out",
+    "subCategory": "administration",
+    "difficulty": "basic",
+    "glossZh": "填写",
+    "example": "Please fill out this form before the orientation starts.",
+    "tags": [
+      "daily",
+      "phrase",
+      "admin"
+    ],
+    "audioText": "fill out",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0031",
+    "type": "phrase",
+    "text": "make sense",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "讲得通；有意义",
+    "example": "Your explanation makes sense now.",
+    "tags": [
+      "daily",
+      "phrase",
+      "conversation"
+    ],
+    "audioText": "make sense",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0032",
+    "type": "phrase",
+    "text": "keep in touch",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "保持联系",
+    "example": "We promised to keep in touch after graduation.",
+    "tags": [
+      "daily",
+      "phrase",
+      "relationship"
+    ],
+    "audioText": "keep in touch",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0033",
+    "type": "phrase",
+    "text": "go over",
+    "subCategory": "study-routine",
+    "difficulty": "basic",
+    "glossZh": "复习；检查",
+    "example": "I need to go over yesterday’s notes tonight.",
+    "tags": [
+      "daily",
+      "phrase",
+      "study"
+    ],
+    "audioText": "go over",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0034",
+    "type": "phrase",
+    "text": "look forward to",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "期待",
+    "example": "I am looking forward to starting my PhD in Hong Kong.",
+    "tags": [
+      "daily",
+      "phrase",
+      "emotion"
+    ],
+    "audioText": "look forward to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0035",
+    "type": "phrase",
+    "text": "catch up",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "赶上；叙旧",
+    "example": "Let’s catch up after the workshop.",
+    "tags": [
+      "daily",
+      "phrase",
+      "conversation"
+    ],
+    "audioText": "catch up",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0036",
+    "type": "phrase",
+    "text": "by accident",
+    "subCategory": "life",
+    "difficulty": "basic",
+    "glossZh": "偶然地",
+    "example": "I found the article by accident while browsing online.",
+    "tags": [
+      "daily",
+      "phrase",
+      "chance"
+    ],
+    "audioText": "by accident",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0037",
+    "type": "phrase",
+    "text": "in advance",
+    "subCategory": "administration",
+    "difficulty": "basic",
+    "glossZh": "提前",
+    "example": "You should book the ticket in advance.",
+    "tags": [
+      "daily",
+      "phrase",
+      "time"
+    ],
+    "audioText": "in advance",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0038",
+    "type": "phrase",
+    "text": "take turns",
+    "subCategory": "conversation",
+    "difficulty": "basic",
+    "glossZh": "轮流",
+    "example": "We took turns summarizing the article aloud.",
+    "tags": [
+      "daily",
+      "phrase",
+      "interaction"
+    ],
+    "audioText": "take turns",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0039",
+    "type": "phrase",
+    "text": "on the way",
+    "subCategory": "travel",
+    "difficulty": "basic",
+    "glossZh": "在路上；即将到来",
+    "example": "I listened to a podcast on the way to the office.",
+    "tags": [
+      "daily",
+      "phrase",
+      "travel"
+    ],
+    "audioText": "on the way",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0040",
+    "type": "phrase",
+    "text": "set aside",
+    "subCategory": "study-routine",
+    "difficulty": "intermediate",
+    "glossZh": "留出；搁置",
+    "example": "I set aside thirty minutes for listening practice.",
+    "tags": [
+      "daily",
+      "phrase",
+      "planning"
+    ],
+    "audioText": "set aside",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0041",
+    "type": "phrase",
+    "text": "be short of",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "缺少",
+    "example": "I am short of time this week, so I need a lighter plan.",
+    "tags": [
+      "daily",
+      "phrase",
+      "constraint"
+    ],
+    "audioText": "be short of",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0042",
+    "type": "word",
+    "text": "overlook",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "忽略；俯瞰",
+    "example": "I overlooked two small mistakes in the email draft.",
+    "tags": [
+      "daily",
+      "attention",
+      "action"
+    ],
+    "audioText": "overlook",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0043",
+    "type": "word",
+    "text": "estimate",
+    "subCategory": "life",
+    "difficulty": "intermediate",
+    "glossZh": "估计",
+    "example": "It is hard to estimate how long the task will take.",
+    "tags": [
+      "daily",
+      "planning",
+      "thinking"
+    ],
+    "audioText": "estimate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0044",
+    "type": "word",
+    "text": "confused",
+    "subCategory": "emotion",
+    "difficulty": "basic",
+    "glossZh": "困惑的",
+    "example": "I felt confused by the registration process at first.",
+    "tags": [
+      "daily",
+      "emotion",
+      "daily-life"
+    ],
+    "audioText": "confused",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "D0045",
+    "type": "word",
+    "text": "noisy",
+    "subCategory": "study-routine",
+    "difficulty": "basic",
+    "glossZh": "吵闹的",
+    "example": "The cafe was too noisy for careful reading.",
+    "tags": [
+      "daily",
+      "environment",
+      "description"
+    ],
+    "audioText": "noisy",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0001",
+    "type": "word",
+    "text": "framework",
+    "subCategory": "research",
+    "difficulty": "intermediate",
+    "glossZh": "框架",
+    "example": "The paper proposes a framework for analyzing design collaboration.",
+    "tags": [
+      "academic",
+      "research",
+      "core"
+    ],
+    "audioText": "framework",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0002",
+    "type": "phrase",
+    "text": "in contrast to",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "与...相对；相比之下",
+    "example": "In contrast to prior work, this study focuses on cultural reasoning.",
+    "tags": [
+      "academic",
+      "phrase",
+      "writing"
+    ],
+    "audioText": "in contrast to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0003",
+    "type": "word",
+    "text": "implication",
+    "subCategory": "research-writing",
+    "difficulty": "intermediate",
+    "glossZh": "含义；启示；影响",
+    "example": "The findings have important implications for design education.",
+    "tags": [
+      "academic",
+      "writing",
+      "argument"
+    ],
+    "audioText": "implication",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0004",
+    "type": "phrase",
+    "text": "account for",
+    "subCategory": "research-writing",
+    "difficulty": "intermediate",
+    "glossZh": "解释；占比",
+    "example": "This factor may account for the difference between the two groups.",
+    "tags": [
+      "academic",
+      "phrase",
+      "analysis"
+    ],
+    "audioText": "account for",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0005",
+    "type": "word",
+    "text": "methodology",
+    "subCategory": "research",
+    "difficulty": "intermediate",
+    "glossZh": "方法论；研究方法",
+    "example": "The methodology section explains how the interviews were conducted.",
+    "tags": [
+      "academic",
+      "research",
+      "paper-section"
+    ],
+    "audioText": "methodology",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0006",
+    "type": "word",
+    "text": "significant",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "重要的；显著的",
+    "example": "There was a significant difference between the two conditions.",
+    "tags": [
+      "academic",
+      "analysis",
+      "high-frequency"
+    ],
+    "audioText": "significant",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0007",
+    "type": "phrase",
+    "text": "stem from",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "源于；起因于",
+    "example": "Many of the problems stem from unclear task definitions.",
+    "tags": [
+      "academic",
+      "phrase",
+      "causality"
+    ],
+    "audioText": "stem from",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0008",
+    "type": "word",
+    "text": "synthesize",
+    "subCategory": "reading",
+    "difficulty": "advanced",
+    "glossZh": "综合；整合",
+    "example": "The review aims to synthesize findings from multiple disciplines.",
+    "tags": [
+      "academic",
+      "reading",
+      "review"
+    ],
+    "audioText": "synthesize",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0009",
+    "type": "word",
+    "text": "evaluate",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "评估；评价",
+    "example": "We need to evaluate whether the method improves user understanding.",
+    "tags": [
+      "academic",
+      "evaluation",
+      "core"
+    ],
+    "audioText": "evaluate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0010",
+    "type": "word",
+    "text": "assumption",
+    "subCategory": "argument",
+    "difficulty": "intermediate",
+    "glossZh": "假设；前提",
+    "example": "The model is built on the assumption that users can compare outputs.",
+    "tags": [
+      "academic",
+      "argument",
+      "reasoning"
+    ],
+    "audioText": "assumption",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0011",
+    "type": "word",
+    "text": "perspective",
+    "subCategory": "argument",
+    "difficulty": "intermediate",
+    "glossZh": "视角；观点",
+    "example": "The article offers a fresh perspective on AI-assisted design.",
+    "tags": [
+      "academic",
+      "argument",
+      "viewpoint"
+    ],
+    "audioText": "perspective",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0012",
+    "type": "word",
+    "text": "coherent",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "连贯的；一致的",
+    "example": "A coherent argument is easier for readers to follow.",
+    "tags": [
+      "academic",
+      "writing",
+      "quality"
+    ],
+    "audioText": "coherent",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0013",
+    "type": "word",
+    "text": "tentative",
+    "subCategory": "argument",
+    "difficulty": "intermediate",
+    "glossZh": "暂定的；试探性的",
+    "example": "The conclusion is still tentative because the sample is small.",
+    "tags": [
+      "academic",
+      "argument",
+      "caution"
+    ],
+    "audioText": "tentative",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0014",
+    "type": "word",
+    "text": "substantial",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "大量的；实质性的",
+    "example": "The revision led to substantial improvements in clarity.",
+    "tags": [
+      "academic",
+      "analysis",
+      "intensity"
+    ],
+    "audioText": "substantial",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0015",
+    "type": "word",
+    "text": "infer",
+    "subCategory": "reading",
+    "difficulty": "advanced",
+    "glossZh": "推断",
+    "example": "Readers have to infer the authors’ assumptions from the discussion.",
+    "tags": [
+      "academic",
+      "reading",
+      "thinking"
+    ],
+    "audioText": "infer",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0016",
+    "type": "word",
+    "text": "cite",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "引用",
+    "example": "You should cite the original source rather than the summary.",
+    "tags": [
+      "academic",
+      "writing",
+      "paper"
+    ],
+    "audioText": "cite",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0017",
+    "type": "word",
+    "text": "critique",
+    "subCategory": "argument",
+    "difficulty": "advanced",
+    "glossZh": "评论；批判性分析",
+    "example": "The class asked us to critique the paper’s evaluation design.",
+    "tags": [
+      "academic",
+      "argument",
+      "critical-thinking"
+    ],
+    "audioText": "critique",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0018",
+    "type": "word",
+    "text": "nuance",
+    "subCategory": "reading",
+    "difficulty": "advanced",
+    "glossZh": "细微差别；微妙之处",
+    "example": "The translation missed some of the nuance in the original sentence.",
+    "tags": [
+      "academic",
+      "reading",
+      "meaning"
+    ],
+    "audioText": "nuance",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0019",
+    "type": "word",
+    "text": "formulate",
+    "subCategory": "writing",
+    "difficulty": "advanced",
+    "glossZh": "构想；表述",
+    "example": "We need to formulate the research question more precisely.",
+    "tags": [
+      "academic",
+      "writing",
+      "planning"
+    ],
+    "audioText": "formulate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0020",
+    "type": "word",
+    "text": "variable",
+    "subCategory": "research",
+    "difficulty": "intermediate",
+    "glossZh": "变量",
+    "example": "Time pressure was treated as an independent variable.",
+    "tags": [
+      "academic",
+      "research",
+      "method"
+    ],
+    "audioText": "variable",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0021",
+    "type": "word",
+    "text": "consistent",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "一致的；稳定的",
+    "example": "The pattern was consistent across all three studies.",
+    "tags": [
+      "academic",
+      "analysis",
+      "result"
+    ],
+    "audioText": "consistent",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0022",
+    "type": "word",
+    "text": "interpret",
+    "subCategory": "reading",
+    "difficulty": "intermediate",
+    "glossZh": "解释；解读",
+    "example": "It is difficult to interpret the chart without more context.",
+    "tags": [
+      "academic",
+      "reading",
+      "analysis"
+    ],
+    "audioText": "interpret",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0023",
+    "type": "word",
+    "text": "articulate",
+    "subCategory": "writing",
+    "difficulty": "advanced",
+    "glossZh": "清楚表达",
+    "example": "She was able to articulate the central problem very clearly.",
+    "tags": [
+      "academic",
+      "writing",
+      "expression"
+    ],
+    "audioText": "articulate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0024",
+    "type": "word",
+    "text": "revise",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "修改",
+    "example": "I need to revise the abstract before sending it.",
+    "tags": [
+      "academic",
+      "writing",
+      "routine"
+    ],
+    "audioText": "revise",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0025",
+    "type": "word",
+    "text": "underlying",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "潜在的；根本的",
+    "example": "The discussion points to an underlying tension between speed and quality.",
+    "tags": [
+      "academic",
+      "analysis",
+      "argument"
+    ],
+    "audioText": "underlying",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0026",
+    "type": "word",
+    "text": "refine",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "完善；打磨",
+    "example": "The framework needs to be refined through more case studies.",
+    "tags": [
+      "academic",
+      "writing",
+      "improvement"
+    ],
+    "audioText": "refine",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0027",
+    "type": "phrase",
+    "text": "align with",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "与...一致",
+    "example": "The findings align with earlier studies on collaborative ideation.",
+    "tags": [
+      "academic",
+      "phrase",
+      "argument"
+    ],
+    "audioText": "align with",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0028",
+    "type": "phrase",
+    "text": "build on",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "基于；在...基础上发展",
+    "example": "This chapter builds on the earlier pilot study.",
+    "tags": [
+      "academic",
+      "phrase",
+      "progression"
+    ],
+    "audioText": "build on",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0029",
+    "type": "phrase",
+    "text": "point out",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "指出",
+    "example": "The reviewer pointed out several unclear transitions.",
+    "tags": [
+      "academic",
+      "phrase",
+      "feedback"
+    ],
+    "audioText": "point out",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0030",
+    "type": "phrase",
+    "text": "draw on",
+    "subCategory": "writing",
+    "difficulty": "advanced",
+    "glossZh": "借鉴；利用",
+    "example": "The analysis draws on both interview data and field notes.",
+    "tags": [
+      "academic",
+      "phrase",
+      "method"
+    ],
+    "audioText": "draw on",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0031",
+    "type": "phrase",
+    "text": "correspond to",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "与...对应",
+    "example": "The categories correspond to different stages of the design process.",
+    "tags": [
+      "academic",
+      "phrase",
+      "analysis"
+    ],
+    "audioText": "correspond to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0032",
+    "type": "phrase",
+    "text": "lead to",
+    "subCategory": "analysis",
+    "difficulty": "basic",
+    "glossZh": "导致",
+    "example": "Poor labeling may lead to misleading benchmark results.",
+    "tags": [
+      "academic",
+      "phrase",
+      "causality"
+    ],
+    "audioText": "lead to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0033",
+    "type": "phrase",
+    "text": "result in",
+    "subCategory": "analysis",
+    "difficulty": "basic",
+    "glossZh": "导致",
+    "example": "The revision resulted in a more focused argument.",
+    "tags": [
+      "academic",
+      "phrase",
+      "causality"
+    ],
+    "audioText": "result in",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0034",
+    "type": "phrase",
+    "text": "be associated with",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "与...相关",
+    "example": "High uncertainty is often associated with slower decision-making.",
+    "tags": [
+      "academic",
+      "phrase",
+      "analysis"
+    ],
+    "audioText": "be associated with",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0035",
+    "type": "phrase",
+    "text": "in terms of",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "在...方面",
+    "example": "The method is effective in terms of speed but weak in transparency.",
+    "tags": [
+      "academic",
+      "phrase",
+      "writing"
+    ],
+    "audioText": "in terms of",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0036",
+    "type": "phrase",
+    "text": "with respect to",
+    "subCategory": "writing",
+    "difficulty": "advanced",
+    "glossZh": "关于；就...而言",
+    "example": "With respect to usability, the interface still needs revision.",
+    "tags": [
+      "academic",
+      "phrase",
+      "formal"
+    ],
+    "audioText": "with respect to",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0037",
+    "type": "phrase",
+    "text": "take into account",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "考虑到",
+    "example": "We need to take user context into account when designing the task.",
+    "tags": [
+      "academic",
+      "phrase",
+      "analysis"
+    ],
+    "audioText": "take into account",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0038",
+    "type": "word",
+    "text": "highlight",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "强调；突出",
+    "example": "The introduction should highlight the practical importance of the study.",
+    "tags": [
+      "academic",
+      "writing",
+      "focus"
+    ],
+    "audioText": "highlight",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0039",
+    "type": "word",
+    "text": "clarify",
+    "subCategory": "writing",
+    "difficulty": "basic",
+    "glossZh": "澄清；说明",
+    "example": "Please clarify what the term means in this context.",
+    "tags": [
+      "academic",
+      "writing",
+      "explanation"
+    ],
+    "audioText": "clarify",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0040",
+    "type": "word",
+    "text": "illustrate",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "说明；举例说明",
+    "example": "Figure 2 illustrates the workflow of the annotation process.",
+    "tags": [
+      "academic",
+      "writing",
+      "explanation"
+    ],
+    "audioText": "illustrate",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0041",
+    "type": "word",
+    "text": "justify",
+    "subCategory": "argument",
+    "difficulty": "advanced",
+    "glossZh": "证明...合理；论证",
+    "example": "The paper does not fully justify its choice of baseline models.",
+    "tags": [
+      "academic",
+      "argument",
+      "critical-thinking"
+    ],
+    "audioText": "justify",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0042",
+    "type": "word",
+    "text": "robust",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "稳健的；可靠的",
+    "example": "The method looks robust across different input settings.",
+    "tags": [
+      "academic",
+      "analysis",
+      "evaluation"
+    ],
+    "audioText": "robust",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0043",
+    "type": "word",
+    "text": "preliminary",
+    "subCategory": "research",
+    "difficulty": "intermediate",
+    "glossZh": "初步的",
+    "example": "These are preliminary findings from a small exploratory study.",
+    "tags": [
+      "academic",
+      "research",
+      "stage"
+    ],
+    "audioText": "preliminary",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0044",
+    "type": "word",
+    "text": "derive",
+    "subCategory": "analysis",
+    "difficulty": "advanced",
+    "glossZh": "得出；推导",
+    "example": "Several themes were derived from the interview transcripts.",
+    "tags": [
+      "academic",
+      "analysis",
+      "method"
+    ],
+    "audioText": "derive",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "A0045",
+    "type": "word",
+    "text": "warrant",
+    "subCategory": "argument",
+    "difficulty": "advanced",
+    "glossZh": "使...有必要；正当理由",
+    "example": "The evidence does not warrant such a strong conclusion.",
+    "tags": [
+      "academic",
+      "argument",
+      "reasoning"
+    ],
+    "audioText": "warrant",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0001",
+    "type": "word",
+    "text": "benchmark",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "基准；基准测试",
+    "example": "This paper proposes a new benchmark for cultural heritage understanding.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "research"
+    ],
+    "audioText": "benchmark",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0002",
+    "type": "word",
+    "text": "artifact",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "文物；人工制品",
+    "example": "The dataset contains images of museum artifacts from different periods.",
+    "tags": [
+      "domain",
+      "heritage",
+      "museum"
+    ],
+    "audioText": "artifact",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0003",
+    "type": "word",
+    "text": "multimodal",
+    "subCategory": "AI",
+    "difficulty": "intermediate",
+    "glossZh": "多模态的",
+    "example": "The study compares several multimodal models on a museum benchmark.",
+    "tags": [
+      "domain",
+      "AI",
+      "model"
+    ],
+    "audioText": "multimodal",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0004",
+    "type": "word",
+    "text": "annotation",
+    "subCategory": "dataset",
+    "difficulty": "intermediate",
+    "glossZh": "标注；注释",
+    "example": "The annotation process involved both experts and student assistants.",
+    "tags": [
+      "domain",
+      "dataset",
+      "process"
+    ],
+    "audioText": "annotation",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0005",
+    "type": "word",
+    "text": "retrieval",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "检索",
+    "example": "Retrieval performance dropped when the metadata was incomplete.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "task"
+    ],
+    "audioText": "retrieval",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0006",
+    "type": "word",
+    "text": "reasoning",
+    "subCategory": "AI",
+    "difficulty": "intermediate",
+    "glossZh": "推理；推理能力",
+    "example": "The benchmark tests whether the model can perform cultural reasoning.",
+    "tags": [
+      "domain",
+      "AI",
+      "core"
+    ],
+    "audioText": "reasoning",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0007",
+    "type": "phrase",
+    "text": "cultural heritage",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "文化遗产",
+    "example": "The project focuses on multimodal understanding of cultural heritage.",
+    "tags": [
+      "domain",
+      "heritage",
+      "core"
+    ],
+    "audioText": "cultural heritage",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0008",
+    "type": "phrase",
+    "text": "evaluation protocol",
+    "subCategory": "research-writing",
+    "difficulty": "advanced",
+    "glossZh": "评估流程；评估协议",
+    "example": "A clear evaluation protocol makes benchmark results easier to compare.",
+    "tags": [
+      "domain",
+      "evaluation",
+      "writing"
+    ],
+    "audioText": "evaluation protocol",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0009",
+    "type": "word",
+    "text": "taxonomy",
+    "subCategory": "research",
+    "difficulty": "advanced",
+    "glossZh": "分类体系；分类法",
+    "example": "The paper proposes a taxonomy of design tasks supported by AI.",
+    "tags": [
+      "domain",
+      "research",
+      "organization"
+    ],
+    "audioText": "taxonomy",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0010",
+    "type": "word",
+    "text": "corpus",
+    "subCategory": "dataset",
+    "difficulty": "intermediate",
+    "glossZh": "语料库；文本集",
+    "example": "We built a corpus of museum descriptions for the pilot study.",
+    "tags": [
+      "domain",
+      "dataset",
+      "language"
+    ],
+    "audioText": "corpus",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0011",
+    "type": "word",
+    "text": "prompt",
+    "subCategory": "AI",
+    "difficulty": "basic",
+    "glossZh": "提示词；提示",
+    "example": "A badly designed prompt can confuse the model.",
+    "tags": [
+      "domain",
+      "AI",
+      "generation"
+    ],
+    "audioText": "prompt",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0012",
+    "type": "word",
+    "text": "pipeline",
+    "subCategory": "AI",
+    "difficulty": "intermediate",
+    "glossZh": "流程；管线",
+    "example": "The pipeline combines OCR, retrieval, and reasoning modules.",
+    "tags": [
+      "domain",
+      "AI",
+      "workflow"
+    ],
+    "audioText": "pipeline",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0013",
+    "type": "word",
+    "text": "embedding",
+    "subCategory": "AI",
+    "difficulty": "advanced",
+    "glossZh": "嵌入表示",
+    "example": "The system uses image embeddings to improve retrieval.",
+    "tags": [
+      "domain",
+      "AI",
+      "representation"
+    ],
+    "audioText": "embedding",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0014",
+    "type": "word",
+    "text": "modality",
+    "subCategory": "AI",
+    "difficulty": "advanced",
+    "glossZh": "模态",
+    "example": "Text is one modality, while image is another.",
+    "tags": [
+      "domain",
+      "AI",
+      "core"
+    ],
+    "audioText": "modality",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0015",
+    "type": "word",
+    "text": "metadata",
+    "subCategory": "dataset",
+    "difficulty": "intermediate",
+    "glossZh": "元数据",
+    "example": "Some artifacts had rich metadata but low-quality captions.",
+    "tags": [
+      "domain",
+      "dataset",
+      "organization"
+    ],
+    "audioText": "metadata",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0016",
+    "type": "word",
+    "text": "curator",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "策展人；馆藏管理人",
+    "example": "The curator helped define the terminology used in the benchmark.",
+    "tags": [
+      "domain",
+      "heritage",
+      "museum"
+    ],
+    "audioText": "curator",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0017",
+    "type": "word",
+    "text": "provenance",
+    "subCategory": "cultural-heritage",
+    "difficulty": "advanced",
+    "glossZh": "来源；出处",
+    "example": "The provenance of the artifact was uncertain in the early records.",
+    "tags": [
+      "domain",
+      "heritage",
+      "museum"
+    ],
+    "audioText": "provenance",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0018",
+    "type": "word",
+    "text": "interpretability",
+    "subCategory": "AI",
+    "difficulty": "advanced",
+    "glossZh": "可解释性",
+    "example": "Interpretability matters when the model gives culturally sensitive answers.",
+    "tags": [
+      "domain",
+      "AI",
+      "evaluation"
+    ],
+    "audioText": "interpretability",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0019",
+    "type": "word",
+    "text": "transparency",
+    "subCategory": "AI",
+    "difficulty": "advanced",
+    "glossZh": "透明度",
+    "example": "Users asked for more transparency in how the model ranked results.",
+    "tags": [
+      "domain",
+      "AI",
+      "design"
+    ],
+    "audioText": "transparency",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0020",
+    "type": "word",
+    "text": "co-creation",
+    "subCategory": "design",
+    "difficulty": "intermediate",
+    "glossZh": "协同创作",
+    "example": "The workshop explored co-creation between designers and AI tools.",
+    "tags": [
+      "domain",
+      "design",
+      "collaboration"
+    ],
+    "audioText": "co-creation",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0021",
+    "type": "word",
+    "text": "ideation",
+    "subCategory": "design",
+    "difficulty": "intermediate",
+    "glossZh": "创意生成",
+    "example": "The paper focuses on AI support for early-stage ideation.",
+    "tags": [
+      "domain",
+      "design",
+      "process"
+    ],
+    "audioText": "ideation",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0022",
+    "type": "word",
+    "text": "prototype",
+    "subCategory": "design",
+    "difficulty": "basic",
+    "glossZh": "原型",
+    "example": "The team built a lightweight prototype for the first study.",
+    "tags": [
+      "domain",
+      "design",
+      "process"
+    ],
+    "audioText": "prototype",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0023",
+    "type": "word",
+    "text": "baseline",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "基线；基准模型",
+    "example": "The benchmark compares the new model against several baselines.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "evaluation"
+    ],
+    "audioText": "baseline",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0024",
+    "type": "word",
+    "text": "ablation",
+    "subCategory": "benchmark",
+    "difficulty": "advanced",
+    "glossZh": "消融实验",
+    "example": "The ablation study shows which component matters most.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "method"
+    ],
+    "audioText": "ablation",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0025",
+    "type": "word",
+    "text": "caption",
+    "subCategory": "dataset",
+    "difficulty": "basic",
+    "glossZh": "说明文字；图注",
+    "example": "Each artifact image is paired with a short caption.",
+    "tags": [
+      "domain",
+      "dataset",
+      "text"
+    ],
+    "audioText": "caption",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0026",
+    "type": "word",
+    "text": "curation",
+    "subCategory": "cultural-heritage",
+    "difficulty": "advanced",
+    "glossZh": "策展；筛选整理",
+    "example": "The benchmark required careful curation of historical materials.",
+    "tags": [
+      "domain",
+      "heritage",
+      "process"
+    ],
+    "audioText": "curation",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0027",
+    "type": "word",
+    "text": "contextualize",
+    "subCategory": "cultural-heritage",
+    "difficulty": "advanced",
+    "glossZh": "置于语境中解释",
+    "example": "The model struggled to contextualize religious objects correctly.",
+    "tags": [
+      "domain",
+      "heritage",
+      "meaning"
+    ],
+    "audioText": "contextualize",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0028",
+    "type": "word",
+    "text": "narrative",
+    "subCategory": "design",
+    "difficulty": "intermediate",
+    "glossZh": "叙事",
+    "example": "The interface uses narrative cues to guide visitors through the collection.",
+    "tags": [
+      "domain",
+      "design",
+      "communication"
+    ],
+    "audioText": "narrative",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0029",
+    "type": "word",
+    "text": "rationale",
+    "subCategory": "design",
+    "difficulty": "advanced",
+    "glossZh": "设计依据；理由",
+    "example": "The authors clearly explain the rationale behind the task design.",
+    "tags": [
+      "domain",
+      "design",
+      "argument"
+    ],
+    "audioText": "rationale",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0030",
+    "type": "phrase",
+    "text": "user study",
+    "subCategory": "design",
+    "difficulty": "basic",
+    "glossZh": "用户研究",
+    "example": "The paper combines a benchmark evaluation with a small user study.",
+    "tags": [
+      "domain",
+      "design",
+      "research"
+    ],
+    "audioText": "user study",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0031",
+    "type": "phrase",
+    "text": "task definition",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "任务定义",
+    "example": "A weak task definition can make the benchmark hard to interpret.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "research"
+    ],
+    "audioText": "task definition",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0032",
+    "type": "phrase",
+    "text": "evaluation metric",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "评估指标",
+    "example": "The evaluation metric should match the real user goal.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "evaluation"
+    ],
+    "audioText": "evaluation metric",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0033",
+    "type": "phrase",
+    "text": "failure case",
+    "subCategory": "AI",
+    "difficulty": "intermediate",
+    "glossZh": "失败案例",
+    "example": "The appendix includes several failure cases for qualitative analysis.",
+    "tags": [
+      "domain",
+      "AI",
+      "analysis"
+    ],
+    "audioText": "failure case",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0034",
+    "type": "phrase",
+    "text": "museum collection",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "馆藏",
+    "example": "The museum collection spans several historical periods.",
+    "tags": [
+      "domain",
+      "heritage",
+      "museum"
+    ],
+    "audioText": "museum collection",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "DM0035",
+    "type": "phrase",
+    "text": "cultural context",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "文化语境",
+    "example": "Without cultural context, the answer may sound plausible but be wrong.",
+    "tags": [
+      "domain",
+      "heritage",
+      "meaning"
+    ],
+    "audioText": "cultural context",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0001",
+    "type": "usage",
+    "text": "The gist of the article is that multimodal models still struggle with cultural reasoning.",
+    "subCategory": "reading",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 gist 的用法，表示“主旨，要点”。",
+    "example": "Can you explain the gist of the paper in one sentence?",
+    "tags": [
+      "academic",
+      "reading",
+      "summary"
+    ],
+    "audioText": "The gist of the article is that multimodal models still struggle with cultural reasoning.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0002",
+    "type": "usage",
+    "text": "What this study contributes is not just a dataset, but also a clearer evaluation protocol.",
+    "subCategory": "research-writing",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查学术表达中对贡献点的强调和对比。",
+    "example": "What matters here is not only accuracy, but interpretability.",
+    "tags": [
+      "domain",
+      "writing",
+      "contribution"
+    ],
+    "audioText": "What this study contributes is not just a dataset, but also a clearer evaluation protocol.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0003",
+    "type": "usage",
+    "text": "Although the interface looks simple, the interaction logic is somewhat difficult for first-time users.",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 although 引导让步和 somewhat 的缓和表达。",
+    "example": "Although the tool is promising, it still needs clearer guidance.",
+    "tags": [
+      "academic",
+      "grammar",
+      "analysis"
+    ],
+    "audioText": "Although the interface looks simple, the interaction logic is somewhat difficult for first-time users.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0004",
+    "type": "usage",
+    "text": "By the time the researchers finished the second round of interviews, several new themes had already emerged.",
+    "subCategory": "grammar-in-context",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 by the time 和过去完成时的搭配。",
+    "example": "By the time we submitted the draft, the deadline had already been extended.",
+    "tags": [
+      "academic",
+      "grammar",
+      "time"
+    ],
+    "audioText": "By the time the researchers finished the second round of interviews, several new themes had already emerged.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0005",
+    "type": "usage",
+    "text": "One possible explanation is that participants were used to comparing outputs side by side.",
+    "subCategory": "analysis",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查解释性句型和 be used to 的实际用法。",
+    "example": "A likely explanation is that the users were used to visual feedback.",
+    "tags": [
+      "academic",
+      "analysis",
+      "phrase"
+    ],
+    "audioText": "One possible explanation is that participants were used to comparing outputs side by side.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0006",
+    "type": "usage",
+    "text": "In contrast to earlier benchmarks, this dataset includes both retrieval tasks and reasoning tasks.",
+    "subCategory": "benchmark",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查对比型学术表达和 benchmark 任务描述。",
+    "example": "In contrast to earlier systems, the new model handles longer contexts.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "comparison"
+    ],
+    "audioText": "In contrast to earlier benchmarks, this dataset includes both retrieval tasks and reasoning tasks.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0007",
+    "type": "usage",
+    "text": "The authors account for the performance gap by examining differences in annotation quality.",
+    "subCategory": "dataset",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 account for 在分析原因时的用法。",
+    "example": "The report accounts for the decline by pointing to missing metadata.",
+    "tags": [
+      "domain",
+      "analysis",
+      "dataset"
+    ],
+    "audioText": "The authors account for the performance gap by examining differences in annotation quality.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "U0008",
+    "type": "usage",
+    "text": "When I commute to campus, I usually listen to a short English podcast and summarize the gist aloud.",
+    "subCategory": "study-routine",
+    "difficulty": "intermediate",
+    "glossZh": "这句话把 commute 和 gist 放进你的日常学习场景里。",
+    "example": "When I commute, I often review phrases from yesterday's lesson.",
+    "tags": [
+      "daily",
+      "daily",
+      "routine"
+    ],
+    "audioText": "When I commute to campus, I usually listen to a short English podcast and summarize the gist aloud.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0009",
+    "type": "usage",
+    "text": "The implication is not that the model fails completely, but that it performs unevenly across cultural domains.",
+    "subCategory": "research-writing",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 implication 和 not that... but that... 的论述结构。",
+    "example": "The implication is not that the method is useless, but that it needs clearer boundaries.",
+    "tags": [
+      "domain",
+      "writing",
+      "argument"
+    ],
+    "audioText": "The implication is not that the model fails completely, but that it performs unevenly across cultural domains.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0010",
+    "type": "usage",
+    "text": "To synthesize the week's reading, try to explain one key concept in plain English to a friend.",
+    "subCategory": "study-method",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 synthesize，并且贴近费曼学习法输出任务。",
+    "example": "To synthesize the discussion, write down the three clearest insights.",
+    "tags": [
+      "academic",
+      "study-method",
+      "output"
+    ],
+    "audioText": "To synthesize the week's reading, try to explain one key concept in plain English to a friend.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0011",
+    "type": "usage",
+    "text": "The article argues that transparency matters most when users cannot easily verify the model's reasoning.",
+    "subCategory": "AI",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 argument 结构和 transparency 的研究语境。",
+    "example": "The authors argue that speed matters less than reliability in this case.",
+    "tags": [
+      "domain",
+      "AI",
+      "argument"
+    ],
+    "audioText": "The article argues that transparency matters most when users cannot easily verify the model's reasoning.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "U0012",
+    "type": "usage",
+    "text": "If the platform is too crowded, I usually set aside the listening task and focus on quick review instead.",
+    "subCategory": "study-routine",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 set aside 和 crowded 的真实学习语境。",
+    "example": "If the room is too noisy, I switch to easier reading.",
+    "tags": [
+      "daily",
+      "daily",
+      "routine"
+    ],
+    "audioText": "If the platform is too crowded, I usually set aside the listening task and focus on quick review instead.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0013",
+    "type": "usage",
+    "text": "The methodology needs to be clarified, especially with respect to how the annotators were trained.",
+    "subCategory": "research",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 with respect to 和 methodology 的搭配。",
+    "example": "The section should be revised with respect to sample selection.",
+    "tags": [
+      "academic",
+      "research",
+      "formal"
+    ],
+    "audioText": "The methodology needs to be clarified, especially with respect to how the annotators were trained.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0014",
+    "type": "usage",
+    "text": "Several failure cases stem from missing cultural context rather than weak visual recognition.",
+    "subCategory": "benchmark",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 stem from 和 cultural context 的结合。",
+    "example": "Most misunderstandings stem from vague task instructions.",
+    "tags": [
+      "domain",
+      "benchmark",
+      "causality"
+    ],
+    "audioText": "Several failure cases stem from missing cultural context rather than weak visual recognition.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0015",
+    "type": "usage",
+    "text": "The conclusion remains tentative because the sample size is too small to support a stronger claim.",
+    "subCategory": "argument",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 tentative 和 support a claim 的学术语气。",
+    "example": "The conclusion should stay tentative until more interviews are completed.",
+    "tags": [
+      "academic",
+      "argument",
+      "caution"
+    ],
+    "audioText": "The conclusion remains tentative because the sample size is too small to support a stronger claim.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "U0016",
+    "type": "usage",
+    "text": "Please go over the abstract once more and point out any sentence that sounds unnatural to you.",
+    "subCategory": "study-routine",
+    "difficulty": "basic",
+    "glossZh": "这句话把 go over 和 point out 放进你的复习流程。",
+    "example": "Go over the list first, and then point out the hardest items.",
+    "tags": [
+      "daily",
+      "daily",
+      "study-method"
+    ],
+    "audioText": "Please go over the abstract once more and point out any sentence that sounds unnatural to you.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0017",
+    "type": "usage",
+    "text": "A robust evaluation metric should reflect both correctness and cultural sensitivity.",
+    "subCategory": "evaluation",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 robust 和 evaluation metric 的研究搭配。",
+    "example": "A robust baseline is necessary for a fair comparison.",
+    "tags": [
+      "domain",
+      "evaluation",
+      "argument"
+    ],
+    "audioText": "A robust evaluation metric should reflect both correctness and cultural sensitivity.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0018",
+    "type": "usage",
+    "text": "The reviewer highlighted a subtle nuance in the way the concept was translated into English.",
+    "subCategory": "writing",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 nuance 和 highlight 的写作语境。",
+    "example": "The editor highlighted a nuance that we had overlooked.",
+    "tags": [
+      "academic",
+      "writing",
+      "feedback"
+    ],
+    "audioText": "The reviewer highlighted a subtle nuance in the way the concept was translated into English.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0019",
+    "type": "usage",
+    "text": "Not every well-off institution can build a useful corpus, because curation still takes time and expertise.",
+    "subCategory": "dataset",
+    "difficulty": "advanced",
+    "glossZh": "这句话把 well-off、corpus 和 curation 放进领域语境里。",
+    "example": "Not every large team can build a reliable dataset quickly.",
+    "tags": [
+      "domain",
+      "dataset",
+      "context"
+    ],
+    "audioText": "Not every well-off institution can build a useful corpus, because curation still takes time and expertise.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0020",
+    "type": "usage",
+    "text": "To make the explanation more coherent, try to align your example with the central research question.",
+    "subCategory": "writing",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 coherent 和 align with 的表达。",
+    "example": "To make the paragraph more coherent, align the topic sentence with the evidence.",
+    "tags": [
+      "academic",
+      "writing",
+      "organization"
+    ],
+    "audioText": "To make the explanation more coherent, try to align your example with the central research question.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0021",
+    "type": "usage",
+    "text": "The museum collection looks impressive at first glance, but the metadata is somewhat inconsistent across periods.",
+    "subCategory": "cultural-heritage",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 metadata、museum collection 和 somewhat。",
+    "example": "The archive is useful, but the labels are somewhat inconsistent.",
+    "tags": [
+      "domain",
+      "heritage",
+      "analysis"
+    ],
+    "audioText": "The museum collection looks impressive at first glance, but the metadata is somewhat inconsistent across periods.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "academic",
+    "id": "U0022",
+    "type": "usage",
+    "text": "If you cannot infer the author's assumption quickly, slow down and identify the contrast words first.",
+    "subCategory": "reading",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 infer、assumption 和快速阅读策略。",
+    "example": "If you cannot infer the main claim, identify the contrast and cause markers first.",
+    "tags": [
+      "academic",
+      "reading",
+      "strategy"
+    ],
+    "audioText": "If you cannot infer the author's assumption quickly, slow down and identify the contrast words first.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0023",
+    "type": "usage",
+    "text": "The prototype was easy to navigate, but users still asked for more transparency about how results were ranked.",
+    "subCategory": "design",
+    "difficulty": "intermediate",
+    "glossZh": "这句话考查 prototype、navigate 和 transparency 的设计语境。",
+    "example": "The tool was easy to use, but users wanted clearer rationale for the suggestions.",
+    "tags": [
+      "domain",
+      "design",
+      "feedback"
+    ],
+    "audioText": "The prototype was easy to navigate, but users still asked for more transparency about how results were ranked.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "daily",
+    "id": "U0024",
+    "type": "usage",
+    "text": "Our landlord was reliable, but the neighborhood was too noisy for concentrated listening practice.",
+    "subCategory": "housing",
+    "difficulty": "basic",
+    "glossZh": "这句话把 landlord、reliable、neighborhood 和 noisy 串进生活场景。",
+    "example": "The apartment was convenient, but the neighborhood was too noisy at night.",
+    "tags": [
+      "daily",
+      "daily",
+      "housing"
+    ],
+    "audioText": "Our landlord was reliable, but the neighborhood was too noisy for concentrated listening practice.",
+    "source": "seed_manual_v2",
+    "active": true
+  },
+  {
+    "category": "domain",
+    "id": "U0025",
+    "type": "usage",
+    "text": "The paper builds on earlier user studies but takes a different perspective on co-creation and ideation.",
+    "subCategory": "design",
+    "difficulty": "advanced",
+    "glossZh": "这句话考查 builds on、perspective、co-creation 和 ideation。",
+    "example": "The chapter builds on earlier theories but offers a different perspective.",
+    "tags": [
+      "domain",
+      "design",
+      "research"
+    ],
+    "audioText": "The paper builds on earlier user studies but takes a different perspective on co-creation and ideation.",
+    "source": "seed_manual_v2",
+    "active": true
+  }
+]

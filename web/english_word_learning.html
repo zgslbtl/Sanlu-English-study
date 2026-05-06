@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanlu English Word Learning</title>
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --panel: rgba(255, 252, 246, 0.96);
+      --ink: #1c3029;
+      --muted: #687a72;
+      --line: rgba(28, 48, 41, 0.12);
+      --accent: #2d6e5d;
+      --accent-soft: #e1efe9;
+      --gold: #c49240;
+      --gold-soft: #f4e5c8;
+      --danger: #8d4e38;
+      --danger-soft: #f7e6df;
+      --shadow: 0 18px 46px rgba(35, 48, 42, 0.08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(196, 146, 64, 0.16), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(45, 110, 93, 0.15), transparent 24%),
+        var(--bg);
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 24px));
+      margin: 24px auto 48px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .shell-nav {
+      padding: 18px 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 8;
+      backdrop-filter: blur(12px);
+    }
+
+    .shell-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .shell-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .shell-title {
+      margin-top: 6px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+      font-size: 1.45rem;
+    }
+
+    .shell-links, .shell-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .shell-links {
+      justify-content: flex-end;
+    }
+
+    .shell-flow {
+      margin-top: 16px;
+    }
+
+    .shell-link, .shell-step {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    .shell-link.active, .shell-step.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+
+    .shell-step.done {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .hero, .section {
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.85fr);
+      gap: 18px;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+    }
+
+    h2, h3, p {
+      margin: 0;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .chips, .actions, .choice-row, .progress-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chips {
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--gold-soft);
+      color: #7b5921;
+      font-size: 0.92rem;
+    }
+
+    .hero-side {
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.88fr);
+      gap: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .summary-box {
+      padding: 14px;
+      border-radius: 18px;
+      background: #fffdf9;
+      border: 1px solid var(--line);
+    }
+
+    .summary-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    button, select, input, textarea {
+      font: inherit;
+    }
+
+    .primary, .secondary {
+      border: none;
+      border-radius: 16px;
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .secondary {
+      background: #f6f1e8;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .choice-row button {
+      flex: 1 1 160px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .choice-familiar {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .choice-fuzzy {
+      background: var(--gold-soft);
+      color: #7b5921;
+    }
+
+    .choice-unknown {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+    .task-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 34, 30, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 24;
+    }
+    .task-surface {
+      position: fixed;
+      z-index: 25;
+      inset: 36px auto auto 50%;
+      transform: translateX(-50%);
+      width: min(920px, calc(100% - 24px));
+      max-height: calc(100vh - 72px);
+      overflow: auto;
+      box-shadow: 0 28px 60px rgba(20, 34, 30, 0.18);
+    }
+    .modal-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .phase-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #f1eadb;
+      color: #6d5a33;
+      font-size: 0.88rem;
+    }
+
+    .term {
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      line-height: 1.28;
+      margin: 4px 0 10px;
+      word-break: break-word;
+    }
+
+    .detail-grid {
+      display: grid;
+      gap: 8px;
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .progress-bar {
+      height: 10px;
+      width: 100%;
+      background: #eee6d9;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #4d927e);
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .item-row {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+    }
+
+    .item-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .status-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .status-ready {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .status-review {
+      background: var(--gold-soft);
+      color: #7b5921;
+    }
+
+    .status-alert {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      background: #fffdf9;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .full-span {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 980px) {
+      .hero, .layout {
+        grid-template-columns: 1fr;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel shell-nav">
+      <div class="shell-top">
+        <div>
+          <div class="shell-kicker">Sanlu English System</div>
+          <div class="shell-title">统一学习工作台</div>
+        </div>
+        <nav class="shell-links">
+          <a class="shell-link" href="/">01 诊断</a>
+          <a class="shell-link active" href="/learning">02 背词</a>
+          <a class="shell-link" href="/story">03 短文</a>
+          <a class="shell-link" href="/writing">04 写作</a>
+        </nav>
+      </div>
+      <div class="shell-flow">
+        <div class="shell-step done">诊断建档</div>
+        <div class="shell-step active">每日背词</div>
+        <div class="shell-step">短文输入</div>
+        <div class="shell-step">输出巩固</div>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div>
+        <h1>English Word Learning</h1>
+        <p class="muted">
+          现在这页已经是你的英语学习工作台了。它会从诊断结果里拉出 `unknown / fuzzy`，生成今日背词包，再把你带到今日短文和每周写作练习里。
+        </p>
+        <div class="chips">
+          <div class="chip" id="today-chip">Today</div>
+          <div class="chip" id="focus-chip">Focus</div>
+          <div class="chip">Flow: 诊断 -> 今日背词 -> 今日短文 -> 今日复习 -> 每周输出</div>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div style="font-weight: 700;">当前阶段</div>
+        <p class="muted">
+          这版已经把“今日背词 / 今日检验 / 今日复习”跑通，并接上了“今日短文 / 每周写作”的入口。你可以把它当作英语系统的主控页。
+        </p>
+        <div class="link-row">
+          <a href="/">返回诊断页</a>
+          <a href="/story">今日短文</a>
+          <a href="/writing">每周写作</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="layout">
+      <section class="panel section">
+        <div class="stack">
+          <div class="card">
+            <h2 style="margin-bottom: 8px;">今日学习队列</h2>
+            <p class="muted">
+              先生成今天的学习包，再开始背词。默认会优先挑 `不认识`，再补一些 `模糊`，同时把到期复习词带回来。
+            </p>
+            <div class="actions" style="margin-top: 16px; align-items: center;">
+              <label class="muted" for="target-new-count">今日新词</label>
+              <select id="target-new-count" class="secondary">
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+                <option value="20">20</option>
+              </select>
+              <label class="muted" for="target-review-count">今日复习</label>
+              <select id="target-review-count" class="secondary">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+              </select>
+              <button class="primary" id="generate-queue">生成今日学习包</button>
+              <button class="secondary" id="refresh-overview">刷新</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="summary-grid" id="overview-grid"></div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom: 8px;">手动加入背词库</h3>
+            <p class="muted">
+              如果你想把论文、聊天、日常记录里的新词先手动收进系统，可以直接在这里粘贴。支持单个词，也支持批量输入；系统会自动判断类型、类别并补出例句，全部按 `unknown` 入库。
+            </p>
+            <div class="form-grid" style="margin-top: 16px;">
+              <div class="field full-span">
+                <label for="manual-text">单词 / 短语 / 用法</label>
+                <textarea id="manual-text" placeholder="例如：benchmark, methodology, in light of, multimodal reasoning"></textarea>
+              </div>
+            </div>
+            <div class="actions" style="margin-top: 14px;">
+              <button class="primary" id="add-manual-item">加入背词库</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="actions">
+              <button class="primary" id="start-learning">开始今日背词</button>
+              <button class="secondary" id="start-verification">进入今日检验</button>
+              <button class="secondary" id="start-review">开始今日复习</button>
+            </div>
+            <p class="muted" id="phase-hint" style="margin-top: 12px;">
+              先完成“今日背词”，再进入“今日检验”。如果今天有到期复习词，也可以单独打开“今日复习”。
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">联动工作流</h3>
+            <p class="muted">
+              今日词包跑通后，直接去“今日短文”做输入和翻译；每周至少完成两次“写作练习”来做输出闭环。
+            </p>
+            <div class="actions" style="margin-top: 14px;">
+              <a class="primary" href="/story" style="display:inline-flex; align-items:center; text-decoration:none;">打开今日短文</a>
+              <a class="secondary" href="/writing" style="display:inline-flex; align-items:center; text-decoration:none;">打开每周写作</a>
+            </div>
+          </div>
+
+          <div class="card hidden" id="phase-panel">
+            <div class="stack">
+              <div class="modal-topbar">
+                <div>
+                  <div style="font-weight:700;">沉浸背词任务框</div>
+                  <div class="muted">这一轮会把今天的背词、检验或复习连续跑完。</div>
+                </div>
+                <button class="secondary" id="close-phase-task">关闭任务框</button>
+              </div>
+              <div>
+                <div class="progress-meta" style="justify-content: space-between; align-items: center;">
+                  <div class="phase-pill" id="phase-pill">phase</div>
+                  <div class="muted" id="phase-progress-label">0 / 0</div>
+                </div>
+                <div class="progress-bar">
+                  <span id="phase-progress-fill"></span>
+                </div>
+              </div>
+
+              <div>
+                <div class="badge-row" id="phase-badges"></div>
+                <div class="term serif" id="phase-term">Loading...</div>
+                <p class="muted" id="phase-example"></p>
+              </div>
+
+              <div class="choice-row">
+                <button class="choice-familiar" data-learning-choice="familiar">认识</button>
+                <button class="choice-fuzzy" data-learning-choice="fuzzy">模糊</button>
+                <button class="choice-unknown" data-learning-choice="unknown">不认识</button>
+              </div>
+
+              <div class="card hidden" id="phase-back-panel" style="padding: 14px;">
+                <div style="font-weight: 700; margin-bottom: 8px;">卡片背面</div>
+                <div class="detail-grid" id="phase-back-grid"></div>
+                <div class="actions" style="margin-top: 14px;">
+                  <button class="primary" id="phase-next">下一个</button>
+                </div>
+              </div>
+
+              <div class="muted" id="phase-feedback"></div>
+            </div>
+          </div>
+
+          <div class="card hidden" id="phase-finish-panel">
+            <h2 style="margin-bottom: 8px;">阶段完成</h2>
+            <p class="muted" id="phase-finish-summary"></p>
+            <div class="actions" style="margin-top: 14px;">
+              <button class="primary hidden" id="phase-followup-verification">继续做今日检验</button>
+              <button class="primary hidden" id="phase-followup-review">继续做今日复习</button>
+              <button class="secondary" id="phase-close">回到概览</button>
+            </div>
+          </div>
+          <div class="task-overlay hidden" id="phase-overlay"></div>
+        </div>
+      </section>
+
+      <aside class="panel section">
+        <div class="stack">
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">今日新词预览</h3>
+            <div class="list" id="new-items-list"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">今日复习预览</h3>
+            <div class="list" id="review-items-list"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">系统提醒</h3>
+            <div class="list" id="system-notes"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      overview: null,
+      queue: null,
+      profile: null,
+      activePhase: null,
+    };
+
+    function openPhaseTask() {
+      document.getElementById("phase-overlay").classList.remove("hidden");
+      document.getElementById("phase-panel").classList.add("task-surface");
+      document.getElementById("phase-finish-panel").classList.add("task-surface");
+    }
+
+    function closePhaseTask() {
+      document.getElementById("phase-overlay").classList.add("hidden");
+      document.getElementById("phase-panel").classList.remove("task-surface");
+      document.getElementById("phase-finish-panel").classList.remove("task-surface");
+      document.getElementById("phase-panel").classList.add("hidden");
+      document.getElementById("phase-finish-panel").classList.add("hidden");
+    }
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        throw new Error(detail || "Request failed");
+      }
+      return response.json();
+    }
+
+    function labelForChoice(choice) {
+      return {
+        familiar: "认识",
+        fuzzy: "模糊",
+        unknown: "不认识",
+      }[choice] || choice;
+    }
+
+    function labelForPhase(phase) {
+      return {
+        learning: "今日背词",
+        verification: "今日检验",
+        review: "今日复习",
+      }[phase] || phase;
+    }
+
+    function itemStatusChip(item, mode) {
+      const statusClass = mode === "review" ? "status-review" : item.diagnosticStatus === "unknown" ? "status-alert" : "status-ready";
+      const text = mode === "review"
+        ? `复习 ${item.currentMemoryStep || "-"}`
+        : item.diagnosticStatus === "unknown" ? "不认识" : "模糊";
+      return `<div class="status-pill ${statusClass}">${text}</div>`;
+    }
+
+    function renderOverview() {
+      const overview = state.overview;
+      const queue = overview?.queue;
+      state.queue = queue;
+
+      document.getElementById("today-chip").textContent = `Today: ${overview?.date || "-"}`;
+      document.getElementById("focus-chip").textContent = state.profile
+        ? `Focus: ${state.profile.focus.join(" / ")}`
+        : "Focus: loading...";
+
+      const stats = overview?.stats || {};
+      const summaryItems = [
+        ["可学习词条", stats.totalLearningItems || 0],
+        ["不认识", stats.unknownCount || 0],
+        ["模糊", stats.fuzzyCount || 0],
+        ["到期复习", stats.dueReviewCount || 0],
+        ["已学稳定", stats.learnedCount || 0],
+        ["已掌握", stats.masteredCount || 0],
+        ["今日短文词数", overview?.story?.targetCount || 0],
+        ["本周写作提交", overview?.writing?.submissionCount || 0],
+      ];
+
+      const overviewGrid = document.getElementById("overview-grid");
+      overviewGrid.innerHTML = "";
+      summaryItems.forEach(([label, value]) => {
+        const box = document.createElement("div");
+        box.className = "summary-box";
+        box.innerHTML = `<div class="muted">${label}</div><div class="summary-value">${value}</div>`;
+        overviewGrid.appendChild(box);
+      });
+
+      renderPreviewList("new-items-list", queue?.resolvedNewItems || [], "new");
+      renderPreviewList("review-items-list", queue?.resolvedReviewItems || [], "review");
+      renderSystemNotes(queue);
+
+      document.getElementById("start-learning").disabled = !(queue?.resolvedNewItems?.length);
+      document.getElementById("start-verification").disabled = !(queue?.resolvedVerificationItems?.length);
+      document.getElementById("start-review").disabled = !(queue?.resolvedReviewItems?.length);
+    }
+
+    function renderPreviewList(targetId, items, mode) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = "";
+
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = mode === "review" ? "今天还没有到期复习词。" : "先生成今日学习包。";
+        target.appendChild(empty);
+        return;
+      }
+
+      items.slice(0, 8).forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `
+          <div class="item-row-top">
+            <div>
+              <div style="font-weight:700; line-height:1.45;">${item.text}</div>
+              <div class="muted">${item.type} / ${item.category} / ${item.subCategory}</div>
+            </div>
+            ${itemStatusChip(item, mode)}
+          </div>
+          <div class="muted">${item.glossZh || "释义待补充"}</div>
+        `;
+        target.appendChild(row);
+      });
+    }
+
+    function renderSystemNotes(queue) {
+      const target = document.getElementById("system-notes");
+      target.innerHTML = "";
+      const notes = [];
+
+      if (!queue) {
+        notes.push("先生成一次今日学习包，系统才能开始背词和复习。");
+      } else {
+        notes.push(`今天的新词目标是 ${queue.targetNewCount} 个，复习目标是 ${queue.targetReviewCount} 个。`);
+        if (queue.resolvedReviewItems?.length) {
+          notes.push("今天有到期复习词，建议背词和检验完成后顺手做一轮复习。");
+        }
+        if (!queue.resolvedReviewItems?.length) {
+          notes.push("今天暂时没有到期复习词，先把新词跑通更重要。");
+        }
+        if (state.overview?.story?.hasStoryText) {
+          notes.push("今日短文已经准备好了，背词后可以直接去做翻译和 gist 练习。");
+        } else {
+          notes.push("今日短文还没生成，完成今天的词包后去短文页点一次生成即可。");
+        }
+        notes.push("如果今天遇到新的关键词、短语或句型，可以直接在这个页面手动加入背词库。");
+      }
+
+      notes.forEach((text) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div class="muted">${text}</div>`;
+        target.appendChild(row);
+      });
+    }
+
+    async function loadOverview() {
+      state.overview = await api("/api/english/learning/overview");
+      renderOverview();
+    }
+
+    async function loadProfile() {
+      state.profile = await api("/api/english/profile");
+      renderOverview();
+    }
+
+    async function generateQueue() {
+      const targetNewCount = Number(document.getElementById("target-new-count").value || 15);
+      const targetReviewCount = Number(document.getElementById("target-review-count").value || 15);
+      state.queue = await api("/api/english/learning/queue/generate", {
+        method: "POST",
+        body: JSON.stringify({ targetNewCount, targetReviewCount }),
+      });
+      state.overview = await api("/api/english/learning/overview");
+      renderOverview();
+      alert("今日学习包已经生成好了。");
+    }
+
+    async function addManualItem() {
+      const rawInput = document.getElementById("manual-text").value.trim();
+      if (!rawInput) {
+        alert("先输入一个词，或者粘贴一批用逗号隔开的词。");
+        return;
+      }
+
+      const texts = rawInput
+        .split(/[\n,，;；]+/g)
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      const payload = await api("/api/english/manual-items/bulk", {
+        method: "POST",
+        body: JSON.stringify({
+          texts,
+          status: "unknown",
+        }),
+      });
+
+      state.overview = payload.overview || await api("/api/english/learning/overview");
+      renderOverview();
+
+      document.getElementById("manual-text").value = "";
+
+      alert(`已加入 ${payload.count} 条到背词库。`);
+    }
+
+    function startPhase(phase) {
+      if (state.activePhase) {
+        openPhaseTask();
+        renderPhaseCard();
+        return;
+      }
+      const queue = state.queue;
+      if (!queue) return;
+
+      const items = phase === "learning"
+        ? queue.resolvedNewItems
+        : phase === "verification"
+          ? queue.resolvedVerificationItems
+          : queue.resolvedReviewItems;
+
+      if (!items?.length) {
+        alert("这一阶段现在没有可学习项目。");
+        return;
+      }
+
+      const prepared = items.map((item) => ({
+        ...item,
+        repeatCount: 0,
+        round: 1,
+      }));
+
+      state.activePhase = {
+        phase,
+        startedAt: new Date().toISOString(),
+        queue: prepared,
+        cursor: 0,
+        revealed: false,
+        events: [],
+        sessionId: `${queue.date || "today"}-${phase}-${Date.now()}`,
+        stepStartedAt: performance.now(),
+      };
+
+      document.getElementById("phase-panel").classList.remove("hidden");
+      document.getElementById("phase-finish-panel").classList.add("hidden");
+      openPhaseTask();
+      renderPhaseCard();
+    }
+
+    function currentPhaseItem() {
+      return state.activePhase?.queue?.[state.activePhase.cursor] || null;
+    }
+
+    function renderPhaseCard() {
+      const phaseState = state.activePhase;
+      const item = currentPhaseItem();
+      if (!phaseState || !item) return;
+
+      document.getElementById("phase-pill").textContent = labelForPhase(phaseState.phase);
+      document.getElementById("phase-progress-label").textContent =
+        `${Math.min(phaseState.cursor + 1, phaseState.queue.length)} / ${phaseState.queue.length}`;
+      document.getElementById("phase-progress-fill").style.width =
+        `${phaseState.queue.length ? ((phaseState.cursor + 1) / phaseState.queue.length) * 100 : 0}%`;
+
+      const badges = document.getElementById("phase-badges");
+      badges.innerHTML = "";
+      [item.category, item.type, item.subCategory, item.currentMemoryStep || item.diagnosticStatus].forEach((label) => {
+        const badge = document.createElement("div");
+        badge.className = "badge";
+        badge.textContent = label;
+        badges.appendChild(badge);
+      });
+
+      document.getElementById("phase-term").textContent = item.text;
+
+      const exampleNode = document.getElementById("phase-example");
+      if (phaseState.phase === "verification") {
+        exampleNode.textContent = "检验阶段默认不显示例句，先看你能不能直接认出来。";
+      } else if (phaseState.phase === "review") {
+        exampleNode.textContent = item.example || "这条目前没有例句。";
+      } else {
+        exampleNode.textContent = item.example || "这条目前没有例句。";
+      }
+
+      const backPanel = document.getElementById("phase-back-panel");
+      const backGrid = document.getElementById("phase-back-grid");
+      backPanel.classList.toggle("hidden", !phaseState.revealed);
+      if (phaseState.revealed) {
+        backGrid.innerHTML = `
+          <div><strong>中文释义：</strong>${item.glossZh || "待补充"}</div>
+          <div><strong>例句：</strong>${item.example || "待补充"}</div>
+          <div><strong>例句翻译：</strong>${item.exampleZh || "当前题库里还没补这一列，后面可以继续扩。"}
+          </div>
+          <div><strong>词根 / 词源：</strong>${item.root || "当前先留空，后面再逐步补充。"}
+          </div>
+          <div><strong>派生：</strong>${(item.derivatives || []).length ? item.derivatives.join(" / ") : "当前先留空，后面再逐步补充。"}
+          </div>
+        `;
+      }
+
+      document.getElementById("phase-feedback").textContent = phaseState.revealed
+        ? "看完背面后点“下一个”继续。"
+        : phaseState.phase === "learning"
+          ? "先根据单词和例句判断自己是否认识。"
+          : phaseState.phase === "verification"
+            ? "检验阶段不给例句提示，尽量直接判断。"
+            : "复习阶段会根据结果重新安排记忆曲线。";
+    }
+
+    function recordChoice(choice) {
+      const phaseState = state.activePhase;
+      const item = currentPhaseItem();
+      if (!phaseState || !item || phaseState.revealed) return;
+
+      const latencyMs = Math.round(performance.now() - phaseState.stepStartedAt);
+      const event = {
+        itemId: item.itemId,
+        choice,
+        phase: phaseState.phase,
+        answeredAt: new Date().toISOString(),
+        latencyMs,
+        round: item.round || 1,
+      };
+      phaseState.events.push(event);
+
+      if (phaseState.phase === "learning" && choice !== "familiar" && item.repeatCount < 2) {
+        phaseState.queue.push({
+          ...item,
+          repeatCount: item.repeatCount + 1,
+          round: (item.round || 1) + 1,
+        });
+      }
+
+      phaseState.revealed = true;
+      renderPhaseCard();
+    }
+
+    async function nextPhaseItem() {
+      const phaseState = state.activePhase;
+      if (!phaseState) return;
+
+      if (phaseState.cursor < phaseState.queue.length - 1) {
+        phaseState.cursor += 1;
+        phaseState.revealed = false;
+        phaseState.stepStartedAt = performance.now();
+        renderPhaseCard();
+        return;
+      }
+
+      const result = await api("/api/english/learning/phase/complete", {
+        method: "POST",
+        body: JSON.stringify({
+          date: state.queue?.date,
+          phase: phaseState.phase,
+          sessionId: phaseState.sessionId,
+          startedAt: phaseState.startedAt,
+          results: phaseState.events,
+        }),
+      });
+
+      state.overview = result.overview;
+      state.queue = result.queue;
+      renderOverview();
+
+      document.getElementById("phase-panel").classList.add("hidden");
+      document.getElementById("phase-finish-panel").classList.remove("hidden");
+      openPhaseTask();
+      document.getElementById("phase-finish-summary").textContent =
+        `${labelForPhase(phaseState.phase)}完成：认识 ${result.summary.familiar} 条，模糊 ${result.summary.fuzzy} 条，不认识 ${result.summary.unknown} 条，重复回流 ${result.summary.repeatedItems} 次。`;
+
+      document.getElementById("phase-followup-verification").classList.toggle(
+        "hidden",
+        phaseState.phase !== "learning" || !(state.queue?.resolvedVerificationItems?.length),
+      );
+      document.getElementById("phase-followup-review").classList.toggle(
+        "hidden",
+        phaseState.phase === "review" || !(state.queue?.resolvedReviewItems?.length),
+      );
+
+      state.activePhase = null;
+    }
+
+    document.getElementById("generate-queue").addEventListener("click", generateQueue);
+    document.getElementById("refresh-overview").addEventListener("click", loadOverview);
+    document.getElementById("add-manual-item").addEventListener("click", addManualItem);
+    document.getElementById("start-learning").addEventListener("click", () => startPhase("learning"));
+    document.getElementById("start-verification").addEventListener("click", () => startPhase("verification"));
+    document.getElementById("start-review").addEventListener("click", () => startPhase("review"));
+    document.querySelectorAll("[data-learning-choice]").forEach((button) => {
+      button.addEventListener("click", () => recordChoice(button.dataset.learningChoice));
+    });
+    document.getElementById("phase-next").addEventListener("click", nextPhaseItem);
+    document.getElementById("phase-close").addEventListener("click", () => {
+      document.getElementById("phase-finish-panel").classList.add("hidden");
+      closePhaseTask();
+    });
+    document.getElementById("close-phase-task").addEventListener("click", closePhaseTask);
+    document.getElementById("phase-overlay").addEventListener("click", closePhaseTask);
+    document.getElementById("phase-followup-verification").addEventListener("click", () => startPhase("verification"));
+    document.getElementById("phase-followup-review").addEventListener("click", () => startPhase("review"));
+
+    Promise.all([loadProfile(), loadOverview()]).catch((error) => {
+      console.error(error);
+      alert("学习页初始化失败，请检查本地服务是否已启动。");
+    });
+  </script>
+</body>
+</html>

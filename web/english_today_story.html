@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanlu English Story</title>
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --panel: rgba(255, 252, 246, 0.96);
+      --ink: #1c3029;
+      --muted: #687a72;
+      --line: rgba(28, 48, 41, 0.12);
+      --accent: #2d6e5d;
+      --accent-soft: #e1efe9;
+      --gold-soft: #f4e5c8;
+      --shadow: 0 18px 46px rgba(35, 48, 42, 0.08);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(196, 146, 64, 0.16), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(45, 110, 93, 0.15), transparent 24%),
+        var(--bg);
+    }
+    .app { width: min(1180px, calc(100% - 24px)); margin: 24px auto 48px; display: grid; gap: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+    .shell-nav {
+      padding: 18px 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 8;
+      backdrop-filter: blur(12px);
+    }
+    .shell-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: end;
+    }
+    .shell-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .shell-title {
+      margin-top: 6px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif;
+      font-size: 1.45rem;
+    }
+    .shell-links, .shell-flow { display: flex; flex-wrap: wrap; gap: 10px; }
+    .shell-links { justify-content: flex-end; }
+    .shell-flow { margin-top: 16px; }
+    .shell-link, .shell-step {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fffdf9;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .shell-link.active, .shell-step.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+    }
+    .shell-step.done {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .hero, .section { padding: 24px; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.86fr); gap: 18px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr); gap: 18px; }
+    .stack, .list { display: grid; gap: 14px; }
+    .card { border: 1px solid var(--line); background: #fffdf9; border-radius: var(--radius); padding: 18px; }
+    h1, h2, h3 { font-family: "Iowan Old Style", "Palatino Linotype", "PingFang SC", serif; margin: 0; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1; margin-bottom: 12px; }
+    p { margin: 0; line-height: 1.7; }
+    .muted { color: var(--muted); }
+    .chips, .actions, .glossary, .links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip, .tag { padding: 8px 12px; border-radius: 999px; background: var(--gold-soft); color: #7b5921; font-size: 0.92rem; }
+    .links a, a.buttonish {
+      text-decoration: none; color: var(--accent); display: inline-flex; align-items: center;
+    }
+    button, textarea { font: inherit; }
+    button {
+      border: none; border-radius: 16px; padding: 12px 16px; cursor: pointer;
+    }
+    .primary { background: var(--accent); color: white; }
+    .secondary { background: #f6f1e8; color: var(--ink); border: 1px solid var(--line); }
+    textarea {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      padding: 14px;
+      resize: vertical;
+      background: #fffdf9;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .story-box {
+      white-space: pre-wrap;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+    .item-row {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffdf9;
+      padding: 14px;
+    }
+    .feedback {
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    .task-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 34, 30, 0.42);
+      backdrop-filter: blur(10px);
+      z-index: 24;
+    }
+    .immersive-shell {
+      position: fixed;
+      inset: 24px;
+      z-index: 25;
+      overflow: auto;
+      align-content: start;
+    }
+    .modal-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .hidden { display: none !important; }
+    @media (max-width: 980px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="panel shell-nav">
+      <div class="shell-top">
+        <div>
+          <div class="shell-kicker">Sanlu English System</div>
+          <div class="shell-title">统一学习工作台</div>
+        </div>
+        <nav class="shell-links">
+          <a class="shell-link" href="/">01 诊断</a>
+          <a class="shell-link" href="/learning">02 背词</a>
+          <a class="shell-link active" href="/story">03 短文</a>
+          <a class="shell-link" href="/writing">04 写作</a>
+        </nav>
+      </div>
+      <div class="shell-flow">
+        <div class="shell-step done">诊断建档</div>
+        <div class="shell-step done">每日背词</div>
+        <div class="shell-step active">短文输入</div>
+        <div class="shell-step">输出巩固</div>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div>
+        <h1>今日短文页</h1>
+        <p class="muted">
+          这页会把你今天的词包和最近的语料线索揉成一篇短文。最适合放在背词和复习之间：先读，再翻译，再写 gist。
+        </p>
+        <div class="chips">
+          <div class="chip" id="story-date">Today</div>
+          <div class="chip" id="story-status">Status</div>
+          <div class="chip" id="story-count">Target items</div>
+        </div>
+      </div>
+      <aside class="card">
+        <div style="font-weight: 700; margin-bottom: 8px;">工作流位置</div>
+        <p class="muted">
+          推荐顺序：先完成今日背词，再打开这里做短文输入；做完翻译后，再去写作页完成本周输出。
+        </p>
+        <div class="links" style="margin-top: 12px;">
+          <a href="/">诊断页</a>
+          <a href="/learning">背词页</a>
+          <a href="/writing">每周写作</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel section">
+      <div class="card">
+        <div class="actions">
+          <button class="primary" id="open-story-task">打开沉浸短文任务</button>
+          <button class="secondary" id="generate-story">生成 / 刷新今日短文</button>
+        </div>
+        <p class="muted" style="margin-top:12px;">
+          点击后会在页面上弹出一个专门的短文任务框，你可以在里面读短文、完成翻译并查看反馈。
+        </p>
+      </div>
+    </section>
+
+    <div class="task-overlay hidden" id="story-overlay"></div>
+    <section class="layout immersive-shell hidden" id="story-workspace">
+      <section class="panel section">
+        <div class="stack">
+          <div class="card">
+            <div class="modal-topbar">
+              <div>
+                <div style="font-weight:700;">沉浸短文任务框</div>
+                <div class="muted">在同一个专门任务框里完成读短文、翻译和自查。</div>
+              </div>
+              <div class="actions">
+                <button class="secondary" id="refresh-story">刷新状态</button>
+                <button class="secondary" id="close-story-task">关闭任务框</button>
+              </div>
+            </div>
+            <p class="muted" style="margin-top: 12px;" id="story-task">
+              先通读短文，再翻译成中文；最后用 3-4 句英文写出 gist。
+            </p>
+          </div>
+          <div class="card">
+            <h2 style="margin-bottom: 10px;">今日短文</h2>
+            <div class="story-box" id="story-text">正在加载...</div>
+          </div>
+          <div class="card">
+            <h2 style="margin-bottom: 10px;">翻译输入</h2>
+            <textarea id="translation-input" placeholder="把这篇短文翻译成中文。先保留逻辑关系，再慢慢润色语气。"></textarea>
+            <div class="actions" style="margin-top: 14px;">
+              <button class="primary" id="submit-translation">提交翻译并查看反馈</button>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">反馈</h3>
+            <div class="list" id="story-feedback"></div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel section">
+        <div class="stack">
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">目标词表</h3>
+            <div class="list" id="story-glossary"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">来源语料</h3>
+            <div class="list" id="story-materials"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 10px;">自查点</h3>
+            <div class="list" id="story-reference-points"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const state = { story: null, workspaceOpen: false };
+
+    async function api(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      if (!response.ok) {
+        const detail = await response.text();
+        throw new Error(detail || "Request failed");
+      }
+      return response.json();
+    }
+
+    function openStoryWorkspace() {
+      state.workspaceOpen = true;
+      document.getElementById("story-overlay").classList.remove("hidden");
+      document.getElementById("story-workspace").classList.remove("hidden");
+    }
+
+    function closeStoryWorkspace() {
+      state.workspaceOpen = false;
+      document.getElementById("story-overlay").classList.add("hidden");
+      document.getElementById("story-workspace").classList.add("hidden");
+    }
+
+    function renderStory() {
+      const story = state.story;
+      document.getElementById("story-date").textContent = `Today: ${story?.date || "-"}`;
+      document.getElementById("story-status").textContent = `Status: ${story?.status || "-"}`;
+      document.getElementById("story-count").textContent = `Target: ${story?.sourceItems?.length || 0}`;
+      document.getElementById("story-task").textContent = story?.outputs?.storyTranslationTask || "先通读短文，再翻译成中文。";
+      document.getElementById("story-text").textContent = story?.outputs?.storyText || "今天还没有短文，请先点击生成。";
+
+      const glossary = document.getElementById("story-glossary");
+      glossary.innerHTML = "";
+      (story?.outputs?.targetGlossary || []).forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div style="font-weight:700;">${item.text}</div><div class="muted">${item.type} / ${item.glossZh || "释义待补充"}</div>`;
+        glossary.appendChild(row);
+      });
+      if (!glossary.childElementCount) glossary.innerHTML = `<div class="muted">还没有可用词表。</div>`;
+
+      const materials = document.getElementById("story-materials");
+      materials.innerHTML = "";
+      (story?.sourceMaterials || []).forEach((item) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div style="font-weight:700;">${item.title}</div><div class="muted">${item.excerpt || "这条语料目前还没有摘要。"}</div>`;
+        materials.appendChild(row);
+      });
+      if (!materials.childElementCount) materials.innerHTML = `<div class="muted">今天这篇短文暂时只基于词包生成，还没有引用已上传语料。</div>`;
+
+      const points = document.getElementById("story-reference-points");
+      points.innerHTML = "";
+      (story?.outputs?.referencePoints || []).forEach((point) => {
+        const row = document.createElement("div");
+        row.className = "item-row";
+        row.innerHTML = `<div class="muted">${point}</div>`;
+        points.appendChild(row);
+      });
+      if (!points.childElementCount) points.innerHTML = `<div class="muted">这里会显示翻译和 gist 的自查点。</div>`;
+
+      const feedback = document.getElementById("story-feedback");
+      feedback.innerHTML = "";
+      const latestSubmission = story?.outputs?.submissions?.[story.outputs.submissions.length - 1];
+      if (latestSubmission) {
+        const summary = document.createElement("div");
+        summary.className = "item-row feedback";
+        summary.innerHTML = `<div style="font-weight:700;">最近一次提交</div><div class="muted">提交时间：${latestSubmission.submittedAt}</div><div class="muted">字数：${latestSubmission.wordCount}</div>`;
+        feedback.appendChild(summary);
+        (latestSubmission.feedback || []).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "item-row";
+          row.innerHTML = `<div class="muted">${item}</div>`;
+          feedback.appendChild(row);
+        });
+      } else {
+        feedback.innerHTML = `<div class="muted">提交翻译后，这里会显示反馈。</div>`;
+      }
+    }
+
+    async function loadStory() {
+      state.story = await api("/api/english/story/today");
+      renderStory();
+    }
+
+    async function generateStory() {
+      state.story = await api("/api/english/story/generate", { method: "POST", body: JSON.stringify({}) });
+      renderStory();
+      openStoryWorkspace();
+    }
+
+    async function submitTranslation() {
+      const translation = document.getElementById("translation-input").value.trim();
+      if (!translation) {
+        alert("先写下你的翻译再提交。");
+        return;
+      }
+      await api("/api/english/story/submit", {
+        method: "POST",
+        body: JSON.stringify({ translation }),
+      });
+      await loadStory();
+      openStoryWorkspace();
+    }
+
+    document.getElementById("open-story-task").addEventListener("click", async () => {
+      if (!state.story) {
+        await loadStory();
+      }
+      openStoryWorkspace();
+    });
+    document.getElementById("generate-story").addEventListener("click", generateStory);
+    document.getElementById("refresh-story").addEventListener("click", loadStory);
+    document.getElementById("close-story-task").addEventListener("click", closeStoryWorkspace);
+    document.getElementById("story-overlay").addEventListener("click", closeStoryWorkspace);
+    document.getElementById("submit-translation").addEventListener("click", submitTranslation);
+
+    loadStory().catch((error) => {
+      document.getElementById("story-text").textContent = error.message;
+    });
+  </script>
+</body>
+</html>
