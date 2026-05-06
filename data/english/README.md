@@ -38,6 +38,59 @@
 4. 你汇报完成情况或发 `不背单词` 截图
 5. agent 自动归档到 `daily/YYYY-MM-DD/`，并更新词库与明日雏形
 
+## 测试后语料生成规则
+
+在当前这一阶段，默认还有一条固定工作流：
+
+1. 你先完成当天诊断测试
+2. 然后告诉 agent：`今天测试完成了，帮我生成语料`
+3. agent 会根据当天的 `unknown / fuzzy` 项生成当天语料组
+
+默认每天生成：
+
+- `2` 篇核心论文链接
+- `1` 篇可选论文链接
+- `1` 份学术解释型生成语料
+- `1` 份日常场景生成语料
+- `1` 份对话 / 邮件型生成语料
+- `1` 份 `source_manifest.md`
+
+默认存放到：
+
+- `projects/english-learning/data/english/daily/YYYY-MM-DD/`
+
+推荐命名：
+
+- `source_manifest.md`
+- `generated_academic_01.md`
+- `generated_daily_01.md`
+- `generated_dialogue_01.md`
+
+真实论文 PDF 统一放在：
+
+- `projects/english-learning/data/english/corpus/papers/pdf/`
+
+推荐命名方式：
+
+- `P09_short_title.pdf`
+- `P10_short_title.pdf`
+
+对应论文说明卡放在：
+
+- `projects/english-learning/data/english/corpus/papers/`
+
+并命名为：
+
+- `P09.md`
+- `P10.md`
+
+之后每日短文默认优先参考：
+
+1. 当天生成语料文件
+2. 当天真实论文
+3. 当天 `unknown / fuzzy` 词
+4. 最近复习词
+
 ## 默认强度
 
 - 标准版：70-90 分钟

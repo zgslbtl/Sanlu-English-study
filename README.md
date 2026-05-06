@@ -30,6 +30,112 @@ The working entrypoint is:
 http://127.0.0.1:4320/
 ```
 
+## Daily Post-Diagnosis Material Workflow
+
+During the current intensive week, the expected pattern is:
+
+1. finish `10-20` rounds of diagnosis testing for the day
+2. tell the agent: `今天测试完成了，帮我生成语料`
+3. let the system generate the day's material set
+4. download the recommended paper PDFs
+5. place the PDFs into the fixed paper folder
+6. use those files as the source for the next short text and learning tasks
+
+### What Will Be Generated Each Day
+
+After the daily diagnosis session, the default output should be:
+
+- `2` core paper links
+- `1` optional paper link
+- `1` generated academic material
+- `1` generated daily-life material
+- `1` generated dialogue / email material
+- `1` daily source manifest
+
+The selection logic should prioritize:
+
+- the day's `unknown` items
+- the day's `fuzzy` items
+- repeated weak items
+- current research interests
+- academic + daily-life balance
+
+### Daily Folder Convention
+
+Generated daily materials should be saved under:
+
+```text
+projects/english-learning/data/english/daily/YYYY-MM-DD/
+```
+
+Recommended generated filenames:
+
+- `source_manifest.md`
+- `generated_academic_01.md`
+- `generated_daily_01.md`
+- `generated_dialogue_01.md`
+
+If needed, additional files can extend this pattern:
+
+- `generated_academic_02.md`
+- `generated_daily_02.md`
+
+### Real Paper Storage
+
+Downloaded paper PDFs should be stored under:
+
+```text
+projects/english-learning/data/english/corpus/papers/pdf/
+```
+
+Recommended naming pattern:
+
+- `P09_short_title.pdf`
+- `P10_short_title.pdf`
+
+Matching paper cards should live under:
+
+```text
+projects/english-learning/data/english/corpus/papers/
+```
+
+Recommended card naming:
+
+- `P09.md`
+- `P10.md`
+
+Each paper card should record:
+
+- title
+- source link
+- local PDF path
+- why it was selected
+- which weak items it helps cover
+
+### Source Manifest Role
+
+`source_manifest.md` is the daily routing file.
+
+It should summarize:
+
+1. today's real papers
+2. today's generated materials
+3. which weak items each source covers
+4. which files the short text should prioritize
+
+### Short Text Generation Rule
+
+From this point on, the daily short text should not be generated only from a flat word list.
+
+It should instead prioritize:
+
+1. the day's generated materials
+2. the day's selected real papers
+3. the day's `unknown / fuzzy` items
+4. recent review items
+
+That keeps the short text closer to real study inputs instead of isolated vocabulary prompts.
+
 ## Run Locally
 
 From this project folder:
