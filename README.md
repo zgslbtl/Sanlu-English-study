@@ -1,61 +1,151 @@
-# English Learning Subproject
+# Sanlu English Study
 
-这个子项目是从 `sanlu-daily-agent` 中拆出来的独立英语学习项目。
+An independent English learning project for diagnosis, vocabulary training, short-text input, and weekly writing practice.
 
-它现在负责：
+This project was split out from `sanlu-daily-agent` so the English workflow can evolve as its own system while still staying loosely connected to daily planning.
 
-- 英语诊断
-- 每日背词 / 检验 / 复习
-- 今日短文
-- 每周写作
-- 英语语料、词库、学习状态和输出归档
+## What It Does
 
-## 目录
+This project currently supports:
 
-- `data/english/`：固定语料池、每日学习包、RLSA 计划
-- `data/english_system/`：诊断库、背词状态、短文与写作系统数据
-- `web/`：英语前端页面
-- `scripts/`：英语服务端与题库脚本
-- `outputs/`：当天英语学习包等输出
+- English diagnosis with a large mixed bank of `word / phrase / usage`
+- Daily word learning, verification, and review
+- Short daily reading/story generation based on current target items
+- Weekly writing prompts with feedback
+- Corpus planning for PolyU RLSA preparation
+- Local data storage for vocabulary state, queues, and learning history
 
-## Git 追踪策略
+## Current Learning Flow
 
-这个子项目默认只追踪：
+The current frontend flow is:
 
-- 前端页面与脚本
-- 题库结构与架构文档
-- 固定语料池说明、论文卡片、RLSA 计划
+1. Diagnosis
+2. Daily word learning
+3. Daily short text
+4. Weekly writing
 
-默认忽略：
-
-- `outputs/` 下的运行产物
-- `data/english/daily/` 每日归档
-- `data/english_system/learner/` 个人学习状态
-- `data/english/vocab/` 中频繁变化的个人词库文件
-- 本地 PDF 与系统生成文件
-
-这样仓库更适合长期维护代码和结构，而不会被个人学习记录刷满。
-
-## 启动
-
-在仓库根目录运行：
-
-```bash
-node projects/english-learning/scripts/english_diagnosis_server.mjs
-```
-
-前端入口：
+The working entrypoint is:
 
 ```text
 http://127.0.0.1:4320/
 ```
 
-## 与每日任务项目的关系
+## Run Locally
 
-根项目只需要在“今天任务是什么”时：
+From this project folder:
 
-1. 给出今天英语学习安排的简要摘要
-2. 给出英语前端链接
-3. 如有需要，再把详细英语学习包写到本子项目的 `outputs/today_english_pack.md`
+```bash
+node scripts/english_diagnosis_server.mjs
+```
 
-也就是说，英语学习现在已经是一个独立子项目，只是仍然挂在同一个仓库中，方便和每日计划联动。
+Or with the local npm script:
+
+```bash
+npm start
+```
+
+Then open:
+
+```text
+http://127.0.0.1:4320/
+```
+
+## Project Structure
+
+```text
+projects/english-learning/
+  data/
+    english/
+    english_system/
+  scripts/
+    english_diagnosis_server.mjs
+    build_english_test_bank.mjs
+  web/
+    english_diagnosis.html
+    english_word_learning.html
+    english_today_story.html
+    english_weekly_writing.html
+  outputs/
+```
+
+### Main Directories
+
+- `data/english/`
+  Fixed corpus, paper cards, RLSA preparation plan, and archived daily English materials.
+
+- `data/english_system/`
+  Diagnosis bank, learning-state files, spaced-review state, story queue, and writing data.
+
+- `scripts/`
+  Local server and bank-building scripts.
+
+- `web/`
+  Frontend pages for diagnosis, learning, story, and writing.
+
+- `outputs/`
+  Generated daily English pack and other runtime outputs.
+
+## Git Tracking Strategy
+
+This repository intentionally tracks the stable project structure, but not the noisy personal runtime state.
+
+Tracked:
+
+- frontend pages and scripts
+- test-bank structure and architecture docs
+- fixed corpus descriptions and paper cards
+- RLSA planning files
+
+Ignored:
+
+- `outputs/`
+- `data/english/daily/`
+- `data/english_system/learner/`
+- frequently changing personal vocabulary files
+- local PDFs
+- macOS system files
+
+This keeps the repository focused on the system itself rather than daily personal study exhaust.
+
+## Relationship To `sanlu-daily-agent`
+
+The parent project only needs to do two things:
+
+1. summarize the day's English task arrangement
+2. provide the English frontend link
+
+Detailed English execution, data, and UI now live here as a standalone subproject.
+
+## Current Scope
+
+This project is designed for local personal use first.
+
+Current strengths:
+
+- clear local workflow
+- persistent diagnosis and learning state
+- integrated daily study loop
+- lightweight local frontend
+
+Current limitations:
+
+- GitHub sync is manual
+- authentication and cloud storage are not part of the app
+- some generated content is still heuristic rather than model-driven
+- the system is optimized for one learner rather than multiple users
+
+## Roadmap Ideas
+
+- stronger corpus-to-task generation
+- better listening / shadowing integration
+- richer writing feedback
+- cleaner dashboard for today's priorities
+- optional sync/export workflows
+
+## Notes
+
+If this project is used together with the daily planning project, the recommended pattern is:
+
+- ask the daily agent for today's plan
+- jump into this English project for execution
+- report completion back to the daily agent afterward
